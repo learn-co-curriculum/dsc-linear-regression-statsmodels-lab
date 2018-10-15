@@ -1,23 +1,26 @@
 
-# Regression Analysis in `statsmodels`
+# Regression Analysis in Statsmodels - Lab
+
+## Introduction
+
 In the previous code along, we looked all the requirements for running an ols simple regression using statsmodels. We worked with a toy example to understand the process and all the necessary steps that must be performed. In this lab , we shall look at a slightly more complex example to study the impact of spendings in different advertising channels of total sales.
 
-### Objectives
+## Objectives
 
 You will be able to:
 * Set up an analytical question to be answered by regression analysis
 * Study regression assumptions for real world datasets
 * Visualize the results of regression analysis
 
-### Introduction 
+## Let's get started
 
-In this lab, we shall work with the "Advertising Dataset" which is a very popular dataset for studying simple regression. [The dataset is available at Kaggle](https://www.kaggle.com/purbar/advertising-data), but we have already downloaded for you. It is available as "Advertising.csv". We shall use this dataset to ask ourselves a simple analytical question:
+In this lab, we will work with the "Advertising Dataset" which is a very popular dataset for studying simple regression. [The dataset is available at Kaggle](https://www.kaggle.com/purbar/advertising-data), but we have already downloaded for you. It is available as "Advertising.csv". We shall use this dataset to ask ourselves a simple analytical question:
 
 ## The Question
 
 Which advertising channel has a strong relationship with sales volume, and can be used to model and predict the sales. 
 
-#### Step 1: Read the dataset and inspect its columns and 5-point statistics
+### Step 1: Read the dataset and inspect its columns and 5-point statistics
 
 
 ```python
@@ -211,7 +214,7 @@ Looking at means for predictors, most budget is spent on TV marketing , and leas
 ```
 
 
-#### Step 2: Plot histograms with kde overlay to check for the normality of the predictors
+### Step 2: Plot histograms with kde overlay to check for the normality of the predictors
 
 
 ```python
@@ -255,8 +258,9 @@ The target variable "sales" is normally distributed with just a gentle skew
 #### Remember . Nothing is perfect . So be positive 
 <img src="https://4.bp.blogspot.com/-e-CL8iluz2o/Vt3Ntg_38kI/AAAAAAAAIJo/zGJMyNaMbFY/s1600/skewed.jpg" width=400>
 
-#### Step 3: Test for the linearity assumption. 
-#### Use scatterplots to plot each predictor against the target variable
+### Step 3: Test for the linearity assumption 
+
+Use scatterplots to plot each predictor against the target variable
 
 
 ```python
@@ -290,7 +294,7 @@ Based on above initial checks, we can confidently say that TV and radio appear t
 
 Note: Kurtosis can be dealt with using techniques like log normalization to "push" the peak towards the center of distribution. We shall talk about this in the next section. 
 
-#### Step 4: Run a simple regression in `statsmodels` with TV as a predictor
+### Step 4: Run a simple regression in `statsmodels` with TV as a predictor
 
 
 ```python
@@ -304,72 +308,12 @@ f = 'sales~TV'
 model = smf.ols(formula=f, data=data).fit()
 ```
 
+### Step 5: Get regression diagnostics summary
+
 
 ```python
-#### Step 5: Get regression diagnostics summary
 model.summary()
 ```
-
-
-
-
-<table class="simpletable">
-<caption>OLS Regression Results</caption>
-<tr>
-  <th>Dep. Variable:</th>          <td>sales</td>      <th>  R-squared:         </th> <td>   0.612</td>
-</tr>
-<tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.610</td>
-</tr>
-<tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   312.1</td>
-</tr>
-<tr>
-  <th>Date:</th>             <td>Fri, 12 Oct 2018</td> <th>  Prob (F-statistic):</th> <td>1.47e-42</td>
-</tr>
-<tr>
-  <th>Time:</th>                 <td>21:04:59</td>     <th>  Log-Likelihood:    </th> <td> -519.05</td>
-</tr>
-<tr>
-  <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1042.</td>
-</tr>
-<tr>
-  <th>Df Residuals:</th>          <td>   198</td>      <th>  BIC:               </th> <td>   1049.</td>
-</tr>
-<tr>
-  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>Intercept</th> <td>    7.0326</td> <td>    0.458</td> <td>   15.360</td> <td> 0.000</td> <td>    6.130</td> <td>    7.935</td>
-</tr>
-<tr>
-  <th>TV</th>        <td>    0.0475</td> <td>    0.003</td> <td>   17.668</td> <td> 0.000</td> <td>    0.042</td> <td>    0.053</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-  <th>Omnibus:</th>       <td> 0.531</td> <th>  Durbin-Watson:     </th> <td>   1.935</td>
-</tr>
-<tr>
-  <th>Prob(Omnibus):</th> <td> 0.767</td> <th>  Jarque-Bera (JB):  </th> <td>   0.669</td>
-</tr>
-<tr>
-  <th>Skew:</th>          <td>-0.089</td> <th>  Prob(JB):          </th> <td>   0.716</td>
-</tr>
-<tr>
-  <th>Kurtosis:</th>      <td> 2.779</td> <th>  Cond. No.          </th> <td>    338.</td>
-</tr>
-</table>
-
-
 
 #### Record your observations on "Goodness of fit"
 
@@ -383,7 +327,7 @@ The Intercept: A "unit" increase in TV spending is associated with a 0.0475 "uni
 Note here that the coefficients represent associations, not causations
 
 
-#### Step 6:  Draw a prediction line with data points omn a scatter plot for X (TV) and Y (Sales)
+### Step 6:  Draw a prediction line with data points omn a scatter plot for X (TV) and Y (Sales)
 
 Hint: We can use `model.predict()` functions to predict the start and end point of of regression line for the minimum and maximum values in the 'TV' variable. 
 
@@ -412,10 +356,10 @@ plt.show()
 
 
 
-![png](index_files/index_23_1.png)
+![png](index_files/index_24_1.png)
 
 
-#### Step 7: Visualize the error term for variance and heteroscedasticity
+### Step 7: Visualize the error term for variance and heteroscedasticity
 
 
 ```python
@@ -425,7 +369,7 @@ plt.show()
 ```
 
 
-![png](index_files/index_25_0.png)
+![png](index_files/index_26_0.png)
 
 
 
@@ -437,7 +381,7 @@ plt.show()
 From the first and second plot in the first row, we see that the variance is creating a cone-shape which is a sign of heteroscedasticity. i.e. the residuals are not normally distributed . This breaks the assumption. 
 ```
 
-#### Next, repeat above for radio and go through the same process, recording your observations
+### Next, repeat above for radio and go through the same process, recording your observations
 
 
 ```python
@@ -462,11 +406,11 @@ plt.show()
 
 
 
-![png](index_files/index_29_1.png)
+![png](index_files/index_30_1.png)
 
 
 
-![png](index_files/index_29_2.png)
+![png](index_files/index_30_2.png)
 
 
 

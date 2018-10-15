@@ -1,23 +1,26 @@
 
-# Regression Analysis in `statsmodels`
+# Regression Analysis in Statsmodels - Lab
+
+## Introduction
+
 In the previous code along, we looked all the requirements for running an ols simple regression using statsmodels. We worked with a toy example to understand the process and all the necessary steps that must be performed. In this lab , we shall look at a slightly more complex example to study the impact of spendings in different advertising channels of total sales.
 
-### Objectives
+## Objectives
 
 You will be able to:
 * Set up an analytical question to be answered by regression analysis
 * Study regression assumptions for real world datasets
 * Visualize the results of regression analysis
 
-### Introduction 
+## Let's get started
 
-In this lab, we shall work with the "Advertising Dataset" which is a very popular dataset for studying simple regression. [The dataset is available at Kaggle](https://www.kaggle.com/purbar/advertising-data), but we have already downloaded for you. It is available as "Advertising.csv". We shall use this dataset to ask ourselves a simple analytical question:
+In this lab, we will work with the "Advertising Dataset" which is a very popular dataset for studying simple regression. [The dataset is available at Kaggle](https://www.kaggle.com/purbar/advertising-data), but we have already downloaded for you. It is available as "Advertising.csv". We shall use this dataset to ask ourselves a simple analytical question:
 
 ## The Question
 
 Which advertising channel has a strong relationship with sales volume, and can be used to model and predict the sales. 
 
-#### Step 1: Read the dataset and inspect its columns and 5-point statistics
+### Step 1: Read the dataset and inspect its columns and 5-point statistics
 
 
 ```python
@@ -204,7 +207,7 @@ Which advertising channel has a strong relationship with sales volume, and can b
 
 
 
-#### Step 2: Plot histograms with kde overlay to check for the normality of the predictors
+### Step 2: Plot histograms with kde overlay to check for the normality of the predictors
 
 
 ```python
@@ -236,8 +239,8 @@ Which advertising channel has a strong relationship with sales volume, and can b
 #### Remember . Nothing is perfect . So be positive 
 <img src="https://4.bp.blogspot.com/-e-CL8iluz2o/Vt3Ntg_38kI/AAAAAAAAIJo/zGJMyNaMbFY/s1600/skewed.jpg" width=400>
 
-#### Step 3: Test for the linearity assumption. 
-#### Use scatterplots to plot each predictor against the target variable
+### Step 3: Test for the linearity assumption. 
+Use scatterplots to plot each predictor against the target variable
 
 
 ```python
@@ -261,7 +264,7 @@ Based on above initial checks, we can confidently say that TV and radio appear t
 
 Note: Kurtosis can be dealt with using techniques like log normalization to "push" the peak towards the center of distribution. We shall talk about this in the next section. 
 
-#### Step 4: Run a simple regression in `statsmodels` with TV as a predictor
+### Step 4: Run a simple regression in `statsmodels` with TV as a predictor
 
 
 ```python
@@ -273,9 +276,11 @@ Note: Kurtosis can be dealt with using techniques like log normalization to "pus
 
 ```
 
+### Step 5: Get regression diagnostics summary
+
+
 
 ```python
-#### Step 5: Get regression diagnostics summary
 
 ```
 
@@ -340,13 +345,13 @@ Note: Kurtosis can be dealt with using techniques like log normalization to "pus
 
 
 
-#### Record your observations on "Goodness of fit"
+### Record your observations on "Goodness of fit"
 
 
 Note here that the coefficients represent associations, not causations
 
 
-#### Step 6:  Draw a prediction line with data points omn a scatter plot for X (TV) and Y (Sales)
+### Step 6:  Draw a prediction line with data points omn a scatter plot for X (TV) and Y (Sales)
 
 Hint: We can use `model.predict()` functions to predict the start and end point of of regression line for the minimum and maximum values in the 'TV' variable. 
 
@@ -369,10 +374,10 @@ Hint: We can use `model.predict()` functions to predict the start and end point 
 
 
 
-![png](index_files/index_21_1.png)
+![png](index_files/index_22_1.png)
 
 
-#### Step 7: Visualize the error term for variance and heteroscedasticity
+### Step 7: Visualize the error term for variance and heteroscedasticity
 
 
 ```python
@@ -380,7 +385,7 @@ Hint: We can use `model.predict()` functions to predict the start and end point 
 ```
 
 
-![png](index_files/index_23_0.png)
+![png](index_files/index_24_0.png)
 
 
 
@@ -388,7 +393,7 @@ Hint: We can use `model.predict()` functions to predict the start and end point 
 # Record Your observations on residuals
 ```
 
-#### Next, repeat above for radio and go through the same process, recording your observations
+### Next, repeat above for radio and go through the same process, recording your observations
 
 
 ```python
@@ -402,11 +407,11 @@ Hint: We can use `model.predict()` functions to predict the start and end point 
 
 
 
-![png](index_files/index_26_1.png)
+![png](index_files/index_27_1.png)
 
 
 
-![png](index_files/index_26_2.png)
+![png](index_files/index_27_2.png)
 
 
 

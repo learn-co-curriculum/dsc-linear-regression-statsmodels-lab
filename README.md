@@ -1,5 +1,5 @@
 
-# Regression Analysis in Statsmodels - Lab
+# Ordinary Least Squares in Statsmodels (OLS) - Lab
 
 ## Introduction
 

@@ -3,7 +3,7 @@
 
 ## Introduction
 
-In the previous code along, we looked all the requirements for running an ols simple regression using statsmodels. We worked with a toy example to understand the process and all the necessary steps that must be performed. In this lab , we shall look at a slightly more complex example to study the impact of spendings in different advertising channels of total sales.
+In the previous Codealong, you looked at all the requirements for running an OLS simple regression using Statsmodels. You worked with the height-weight data to understand the process and all the necessary steps that must be performed. In this lab , you'll explore slightly more complex example to study the impact of spendings in different advertising channels of total sales.
 
 ## Objectives
 
@@ -14,13 +14,11 @@ You will be able to:
 
 ## Let's get started
 
-In this lab, we will work with the "Advertising Dataset" which is a very popular dataset for studying simple regression. [The dataset is available at Kaggle](https://www.kaggle.com/purbar/advertising-data), but we have already downloaded for you. It is available as "Advertising.csv". We shall use this dataset to ask ourselves a simple analytical question:
+In this lab, you'll work with the "Advertising Dataset", which is a very popular dataset for studying simple regression. [The dataset is available on Kaggle](https://www.kaggle.com/purbar/advertising-data), but we have downloaded it for you. It is available in this repository as `advertising.csv`. You'll use this dataset to answer this question:
 
-## The Question
+> Which advertising channel has the strongest relationship with sales volume, and can be used to model and predict the sales?
 
-Which advertising channel has a strong relationship with sales volume, and can be used to model and predict the sales. 
-
-### Step 1: Read the dataset and inspect its columns and 5-point statistics
+## Step 1: Read the dataset and inspect its columns and 5-point statistics
 
 
 ```python
@@ -204,7 +202,7 @@ Which advertising channel has a strong relationship with sales volume, and can b
 # Describe the contents of this dataset
 ```
 
-### Step 2: Plot histograms with kde overlay to check for the normality of the predictors
+## Step 2: Plot histograms with kde overlay to check for the normality of the predictors
 
 
 ```python
@@ -233,10 +231,11 @@ Which advertising channel has a strong relationship with sales volume, and can b
 # Record your observations on normality here 
 ```
 
-#### Remember . Nothing is perfect . So be positive 
-<img src="https://4.bp.blogspot.com/-e-CL8iluz2o/Vt3Ntg_38kI/AAAAAAAAIJo/zGJMyNaMbFY/s1600/skewed.jpg" width=400>
+** Remember that nothing is perfect, so be positive!**
+<img src="images/skewed.jpg" width=400>
 
-### Step 3: Test for the linearity assumption. 
+## Step 3: Test for the linearity assumption 
+
 Use scatterplots to plot each predictor against the target variable
 
 
@@ -254,14 +253,14 @@ Use scatterplots to plot each predictor against the target variable
 # Record yor observations on linearity here 
 ```
 
-### Conclusion so far !
+### Conclusion so far
 
 Based on above initial checks, we can confidently say that TV and radio appear to be good predictors for our regression analysis. Newspaper is very heavily skewed and also doesnt show any clear linear relationship with the target. 
-> We shall move ahead with our analysis using TV and radio , and count out the newspaper due to the fact that data violates ols assumptions
+> We'll move ahead with our analysis using TV and radio, and rule out newspaper because we believe it violates OLS assumptions
 
-Note: Kurtosis can be dealt with using techniques like log normalization to "push" the peak towards the center of distribution. We shall talk about this in the next section. 
+Note: Kurtosis can be dealt with using techniques like log normalization to "push" the peak towards the center of distribution. You'll learn about this later on.
 
-### Step 4: Run a simple regression in `statsmodels` with TV as a predictor
+## Step 4: Run a simple regression in Statsmodels with TV as a predictor
 
 
 ```python
@@ -273,8 +272,7 @@ Note: Kurtosis can be dealt with using techniques like log normalization to "pus
 
 ```
 
-### Step 5: Get regression diagnostics summary
-
+## Step 5: Get Regression Diagnostics Summary
 
 
 ```python
@@ -342,15 +340,11 @@ Note: Kurtosis can be dealt with using techniques like log normalization to "pus
 
 
 
-### Record your observations on "Goodness of fit"
-
-
 Note here that the coefficients represent associations, not causations
 
+## Step 6:  Draw a prediction line with data points on a scatter plot for X (TV) and Y (Sales)
 
-### Step 6:  Draw a prediction line with data points omn a scatter plot for X (TV) and Y (Sales)
-
-Hint: We can use `model.predict()` functions to predict the start and end point of of regression line for the minimum and maximum values in the 'TV' variable. 
+Hint: You can use the `model.predict()` function to predict the start and end point of of regression line for the minimum and maximum values in the 'TV' variable. 
 
 
 ```python
@@ -374,7 +368,7 @@ Hint: We can use `model.predict()` functions to predict the start and end point 
 ![png](index_files/index_16_1.png)
 
 
-### Step 7: Visualize the error term for variance and heteroscedasticity
+## Step 7: Visualize the error term for variance and heteroscedasticity
 
 
 ```python
@@ -390,7 +384,7 @@ Hint: We can use `model.predict()` functions to predict the start and end point 
 # Record Your observations on residuals
 ```
 
-### Next, repeat above for radio and go through the same process, recording your observations
+## Step 8: Repeat the above for radio and record your observations
 
 
 ```python
@@ -484,17 +478,16 @@ model.summary()
 
 ## The Answer
 
+Based on above analysis, you can conclude that none of the two chosen predictors is ideal for modeling a relationship with the sales volumes. `Newspaper` clearly violated normality and linearity assumptions. `TV` and `radio` did not provide a high value for thw coefficient of determination, where TV performed slightly better than the radio. There is obvious heteroscdasticity in the residuals for both variables. 
 
-Based on above analysis, we can conclude that none of the two chosen predictors is ideal for modeling a relationship with the sales volumes. `Newspaper` clearly violated normality and linearity assumptions. TV and radio did not provide a high value for co-efficient of determination - TV performed slightly better than the radio. There is obvious heteroscdasticity in the residuals for both variables. 
+> We can either look for further data, perform extra preprocessing or use more advanced techniques. 
 
-> We can either look for further data, perform extra pre-processing or use more advanced techniques. 
-
-Remember there are lot of technqiues we can employ to FIX this data. 
+Remember there are lots of technqiues we can employ to fix these data. 
 
 Whether we should call TV the "best predictor" or label all of them "equally useless", is a domain specific question and a marketing manager would have a better opinion on how to move forward with this situation. 
 
-In the following lesson, we shall look at the more details on interpreting the regression diagnostics and confidence in the model. 
+In the following lesson, you'll look at the more details on interpreting the regression diagnostics and confidence in the model. 
 
 ## Summary
 
-In this lesson, we ran a complete regression analysis with a simple dataset. We looked for the regression assumptions pre and post the analysis phase. We also created some visualizations to develop a confidence on the model and check for its goodness of fit. 
+In this lab, you ran a complete regression analysis with a simple dataset. You looked for the regression assumptions before and after the analysis phase. We also created some visualizations to develop a confidence on the model and check for its goodness of fit. 

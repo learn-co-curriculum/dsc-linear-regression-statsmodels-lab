@@ -3,7 +3,7 @@
 
 ## Introduction
 
-In the previous code along, we looked all the requirements for running an ols simple regression using statsmodels. We worked with a toy example to understand the process and all the necessary steps that must be performed. In this lab , we shall look at a slightly more complex example to study the impact of spendings in different advertising channels of total sales.
+In the previous Codealong, you looked at all the requirements for running an OLS simple regression using Statsmodels. You worked with the height-weight data to understand the process and all the necessary steps that must be performed. In this lab , you'll explore slightly more complex example to study the impact of spendings in different advertising channels of total sales.
 
 ## Objectives
 
@@ -14,13 +14,11 @@ You will be able to:
 
 ## Let's get started
 
-In this lab, we will work with the "Advertising Dataset" which is a very popular dataset for studying simple regression. [The dataset is available at Kaggle](https://www.kaggle.com/purbar/advertising-data), but we have already downloaded for you. It is available as "Advertising.csv". We shall use this dataset to ask ourselves a simple analytical question:
+In this lab, you'll work with the "Advertising Dataset", which is a very popular dataset for studying simple regression. [The dataset is available on Kaggle](https://www.kaggle.com/purbar/advertising-data), but we have downloaded it for you. It is available in this repository as `advertising.csv`. You'll use this dataset to answer this question:
 
-## The Question
+> Which advertising channel has the strongest relationship with sales volume, and can be used to model and predict the sales?
 
-Which advertising channel has a strong relationship with sales volume, and can be used to model and predict the sales. 
-
-### Step 1: Read the dataset and inspect its columns and 5-point statistics
+## Step 1: Read the dataset and inspect its columns and 5-point statistics
 
 
 ```python
@@ -205,16 +203,14 @@ data.describe()
 
 ```python
 # Describe the contents of this dataset
+
+# In every record, we have three predictors showing the advertising budget spent on TV, newspaper 
+# and radio and a target variable (sales). The target variable shows the sales figure for each marketing 
+# campaign along with money spent on all three channels. 
+# Looking at means for predictors, most budget is spent on TV marketing, and least on radio.
 ```
 
-```
-In every record, we have three predictors showing the advertising budget spent on TV, newspaper and radio and a target variable (sales). The target variable shows the sales figure for each marketing campaign along with money spent on all three channels. 
-
-Looking at means for predictors, most budget is spent on TV marketing , and least on radio.
-```
-
-
-### Step 2: Plot histograms with kde overlay to check for the normality of the predictors
+## Step 2: Plot histograms with kde overlay to check for the normality of the predictors
 
 
 ```python
@@ -227,38 +223,35 @@ for column in data:
 ```
 
 
-![png](index_files/index_8_0.png)
+![png](index_files/index_6_0.png)
 
 
 
-![png](index_files/index_8_1.png)
+![png](index_files/index_6_1.png)
 
 
 
-![png](index_files/index_8_2.png)
+![png](index_files/index_6_2.png)
 
 
 
-![png](index_files/index_8_3.png)
+![png](index_files/index_6_3.png)
 
 
 
 ```python
 # Record your observations on normality here 
+
+# No variable is "perfectly" normal, but these do tend to follow an overall normal pattern. 
+# We see major skew in the newspaper predictor which could be problematic towards analysis. 
+# TV and radio are still pretty symmetrical distributions and can be used as predictors
+# The target variable "sales" is normally distributed with just a gentle skew
 ```
 
-```
-No variable is "perfectly" normal, but these do tend to follow an overall normal pattern. We see major skew in the newspaper predictor which could be problematic towards analysis. 
+** Remember that nothing is perfect, so be positive!**
+<img src="images/skewed.jpg" width=400>
 
-TV and radio are still pretty symmetrical distributions and can be used as predictors
-
-The target variable "sales" is normally distributed with just a gentle skew
-```
-
-#### Remember . Nothing is perfect . So be positive 
-<img src="https://4.bp.blogspot.com/-e-CL8iluz2o/Vt3Ntg_38kI/AAAAAAAAIJo/zGJMyNaMbFY/s1600/skewed.jpg" width=400>
-
-### Step 3: Test for the linearity assumption 
+## Step 3: Test for the linearity assumption 
 
 Use scatterplots to plot each predictor against the target variable
 
@@ -273,28 +266,27 @@ plt.show()
 ```
 
 
-![png](index_files/index_13_0.png)
+![png](index_files/index_9_0.png)
 
 
 
 ```python
 # Record yor observations on linearity here 
+
+# TV seems to be a good feature due to highly linear relationship with sales
+# radio shows a linear pattern as well but there a higher level of variance in there than TV
+# newspaper is worse, there is too much variance along y-axis and theres no clear linear relationship 
+# between newspaper and sales.
 ```
 
-```
-TV seems to be a good feature due to highly linear relationship with sales
-radio shows a linear pattern as well but there a higher level of variance in there than TV
-newspaper is worse, there is too much variance along y-axis and theres no clear linear relationship between newspaper and sales
-```
-
-### Conclusion so far !
+### Conclusion so far
 
 Based on above initial checks, we can confidently say that TV and radio appear to be good predictors for our regression analysis. Newspaper is very heavily skewed and also doesnt show any clear linear relationship with the target. 
-> We shall move ahead with our analysis using TV and radio , and count out the newspaper due to the fact that data violates ols assumptions
+> We'll move ahead with our analysis using TV and radio, and rule out newspaper because we believe it violates OLS assumptions
 
-Note: Kurtosis can be dealt with using techniques like log normalization to "push" the peak towards the center of distribution. We shall talk about this in the next section. 
+Note: Kurtosis can be dealt with using techniques like log normalization to "push" the peak towards the center of distribution. You'll learn about this later on.
 
-### Step 4: Run a simple regression in `statsmodels` with TV as a predictor
+## Step 4: Run a simple regression in Statsmodels with TV as a predictor
 
 
 ```python
@@ -308,28 +300,88 @@ f = 'sales~TV'
 model = smf.ols(formula=f, data=data).fit()
 ```
 
-### Step 5: Get regression diagnostics summary
+## Step 5: Get Regression Diagnostics Summary
 
 
 ```python
 model.summary()
 ```
 
-#### Record your observations on "Goodness of fit"
 
+
+
+<table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>          <td>sales</td>      <th>  R-squared:         </th> <td>   0.612</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.610</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   312.1</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Thu, 07 Mar 2019</td> <th>  Prob (F-statistic):</th> <td>1.47e-42</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>13:46:26</td>     <th>  Log-Likelihood:    </th> <td> -519.05</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1042.</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>   198</td>      <th>  BIC:               </th> <td>   1049.</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>    7.0326</td> <td>    0.458</td> <td>   15.360</td> <td> 0.000</td> <td>    6.130</td> <td>    7.935</td>
+</tr>
+<tr>
+  <th>TV</th>        <td>    0.0475</td> <td>    0.003</td> <td>   17.668</td> <td> 0.000</td> <td>    0.042</td> <td>    0.053</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td> 0.531</td> <th>  Durbin-Watson:     </th> <td>   1.935</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.767</td> <th>  Jarque-Bera (JB):  </th> <td>   0.669</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td>-0.089</td> <th>  Prob(JB):          </th> <td>   0.716</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 2.779</td> <th>  Cond. No.          </th> <td>    338.</td>
+</tr>
+</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+
+
+
+```python
+# Record your observations on "Goodness of fit" here
+
+# R-squared value is 0.61 i.e. 61% of variance in the target variable can be explained using the spendings on TV. 
+# The Intercept: A "unit" increase in TV spending is associated with a 0.0475 "unit" 
+# increase in Sales. OR An additional 1,000 spent on TV is associated with an increase in sales of 47.5 
 ```
-R-squared value is 0.61 i.e. 61% of variance in the target variable can be explained using the spendings on TV. 
 
-The Intercept: A "unit" increase in TV spending is associated with a 0.0475 "unit" increase in Sales. OR An additional 1,000 spent on TV is associated with an increase in sales of 47.5 
-
-
-```
 Note here that the coefficients represent associations, not causations
 
+## Step 6:  Draw a prediction line with data points on a scatter plot for X (TV) and Y (Sales)
 
-### Step 6:  Draw a prediction line with data points omn a scatter plot for X (TV) and Y (Sales)
-
-Hint: We can use `model.predict()` functions to predict the start and end point of of regression line for the minimum and maximum values in the 'TV' variable. 
+Hint: You can use the `model.predict()` function to predict the start and end point of of regression line for the minimum and maximum values in the 'TV' variable. 
 
 
 ```python
@@ -356,10 +408,10 @@ plt.show()
 
 
 
-![png](index_files/index_24_1.png)
+![png](index_files/index_17_1.png)
 
 
-### Step 7: Visualize the error term for variance and heteroscedasticity
+## Step 7: Visualize the error term for variance and heteroscedasticity
 
 
 ```python
@@ -369,19 +421,19 @@ plt.show()
 ```
 
 
-![png](index_files/index_26_0.png)
+![png](index_files/index_19_0.png)
 
 
 
 ```python
 # Record Your observations on residuals
+
+# From the first and second plot in the first row, we see that the variance is 
+# creating a cone-shape which is a sign of heteroscedasticity. i.e. the residuals 
+# are not normally distributed . This breaks the assumption.
 ```
 
-```
-From the first and second plot in the first row, we see that the variance is creating a cone-shape which is a sign of heteroscedasticity. i.e. the residuals are not normally distributed . This breaks the assumption. 
-```
-
-### Next, repeat above for radio and go through the same process, recording your observations
+## Step 8: Repeat the above for radio and record your observations
 
 
 ```python
@@ -399,18 +451,18 @@ fig = sm.graphics.plot_regress_exog(model, "radio", fig=fig)
 plt.show()
 ```
 
-    R-Squared: 0.33203245544529525
+    R-Squared: 0.33203245544529547
     Intercept    9.311638
     radio        0.202496
     dtype: float64
 
 
 
-![png](index_files/index_30_1.png)
+![png](index_files/index_22_1.png)
 
 
 
-![png](index_files/index_30_2.png)
+![png](index_files/index_22_2.png)
 
 
 
@@ -433,10 +485,10 @@ model.summary()
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   98.42</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Fri, 12 Oct 2018</td> <th>  Prob (F-statistic):</th> <td>4.35e-19</td>
+  <th>Date:</th>             <td>Thu, 07 Mar 2019</td> <th>  Prob (F-statistic):</th> <td>4.35e-19</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>20:52:55</td>     <th>  Log-Likelihood:    </th> <td> -573.34</td>
+  <th>Time:</th>                 <td>13:46:27</td>     <th>  Log-Likelihood:    </th> <td> -573.34</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1151.</td>
@@ -475,41 +527,37 @@ model.summary()
 <tr>
   <th>Kurtosis:</th>      <td> 3.544</td> <th>  Cond. No.          </th> <td>    51.4</td>
 </tr>
-</table>
+</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
 
 
 
 ```python
 # Record your observations here for goodnes of fit 
+
+
+# As a predictor, radio performs worse than TV. 
+# It has higher amount of skewness and kurtosis than TV.
+# A very low R_squared explaining only 33% of variance in the target variable.
+
+# A "unit" increase in radio spending is associated with a 0.2025 "unit" increase in Sales.
+# OR An additional 1,000 spent on TV is associated with an increase in sales of 20.02
+
+# There is obvious heteroscedasticity as with the case of TV.
 ```
-
-```
-As a predictor, radio performs worse than TV. 
-
-It has higher amount of skewness and kurtosis than TV
-
-A very low R_squared explaining only 33% of variance in the target variable
-
-A "unit" increase in radio spending is associated with a 0.2025 "unit" increase in Sales. OR An additional 1,000 spent on TV is associated with an increase in sales of 20.02
-
-There is obvious heteroscedasticity as with the case of TV
-```
-
 
 ## The Answer
 
+Based on above analysis, you can conclude that none of the two chosen predictors is ideal for modeling a relationship with the sales volumes. `Newspaper` clearly violated normality and linearity assumptions. `TV` and `radio` did not provide a high value for thw coefficient of determination, where TV performed slightly better than the radio. There is obvious heteroscdasticity in the residuals for both variables. 
 
-Based on above analysis, we can conclude that none of the two chosen predictors is ideal for modeling a relationship with the sales volumes. `Newspaper` clearly violated normality and linearity assumptions. TV and radio did not provide a high value for co-efficient of determination - TV performed slightly better than the radio. There is obvious heteroscdasticity in the residuals for both variables. 
+> We can either look for further data, perform extra preprocessing or use more advanced techniques. 
 
-> We can either look for further data, perform extra pre-processing or use more advanced techniques. 
-
-Remember there are lot of technqiues we can employ to FIX this data. 
+Remember there are lots of technqiues we can employ to fix these data. 
 
 Whether we should call TV the "best predictor" or label all of them "equally useless", is a domain specific question and a marketing manager would have a better opinion on how to move forward with this situation. 
 
-In the following lesson, we shall look at the more details on interpreting the regression diagnostics and confidence in the model. 
+In the following lesson, you'll look at the more details on interpreting the regression diagnostics and confidence in the model. 
 
 ## Summary
 
-In this lesson, we ran a complete regression analysis with a simple dataset. We looked for the regression assumptions pre and post the analysis phase. We also created some visualizations to develop a confidence on the model and check for its goodness of fit. 
+In this lab, you ran a complete regression analysis with a simple dataset. You looked for the regression assumptions before and after the analysis phase. We also created some visualizations to develop a confidence on the model and check for its goodness of fit. 

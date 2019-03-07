@@ -204,9 +204,6 @@ Which advertising channel has a strong relationship with sales volume, and can b
 # Describe the contents of this dataset
 ```
 
-
-
-
 ### Step 2: Plot histograms with kde overlay to check for the normality of the predictors
 
 
@@ -216,19 +213,19 @@ Which advertising channel has a strong relationship with sales volume, and can b
 ```
 
 
-![png](index_files/index_8_0.png)
+![png](index_files/index_6_0.png)
 
 
 
-![png](index_files/index_8_1.png)
+![png](index_files/index_6_1.png)
 
 
 
-![png](index_files/index_8_2.png)
+![png](index_files/index_6_2.png)
 
 
 
-![png](index_files/index_8_3.png)
+![png](index_files/index_6_3.png)
 
 
 
@@ -249,7 +246,7 @@ Use scatterplots to plot each predictor against the target variable
 ```
 
 
-![png](index_files/index_12_0.png)
+![png](index_files/index_9_0.png)
 
 
 
@@ -374,7 +371,7 @@ Hint: We can use `model.predict()` functions to predict the start and end point 
 
 
 
-![png](index_files/index_22_1.png)
+![png](index_files/index_16_1.png)
 
 
 ### Step 7: Visualize the error term for variance and heteroscedasticity
@@ -385,7 +382,7 @@ Hint: We can use `model.predict()` functions to predict the start and end point 
 ```
 
 
-![png](index_files/index_24_0.png)
+![png](index_files/index_18_0.png)
 
 
 
@@ -407,11 +404,11 @@ Hint: We can use `model.predict()` functions to predict the start and end point 
 
 
 
-![png](index_files/index_27_1.png)
+![png](index_files/index_21_1.png)
 
 
 
-![png](index_files/index_27_2.png)
+![png](index_files/index_21_2.png)
 
 
 
@@ -484,9 +481,6 @@ model.summary()
 ```python
 # Record your observations here for goodnes of fit 
 ```
-
-
-
 
 ## The Answer
 

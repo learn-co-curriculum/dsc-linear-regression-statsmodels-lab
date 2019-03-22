@@ -320,10 +320,10 @@ model.summary()
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   312.1</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Thu, 07 Mar 2019</td> <th>  Prob (F-statistic):</th> <td>1.47e-42</td>
+  <th>Date:</th>             <td>Fri, 22 Mar 2019</td> <th>  Prob (F-statistic):</th> <td>1.47e-42</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>13:46:26</td>     <th>  Log-Likelihood:    </th> <td> -519.05</td>
+  <th>Time:</th>                 <td>13:16:34</td>     <th>  Log-Likelihood:    </th> <td> -519.05</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1042.</td>
@@ -424,14 +424,39 @@ plt.show()
 
 
 ```python
-# Record Your observations on residuals
+# Record Your observations on heteroscedasticity
 
 # From the first and second plot in the first row, we see that the variance is 
 # creating a cone-shape which is a sign of heteroscedasticity. i.e. the residuals 
-# are not normally distributed . This breaks the assumption.
+# are heteroscedastic. This breaks the assumption.
 ```
 
-## Step 8: Repeat the above for radio and record your observations
+## Step 8: Check the normality assumptions by creating a QQ-plot
+
+
+```python
+import scipy.stats as stats
+residuals = model.resid
+fig = sm.graphics.qqplot(residuals, dist=stats.norm, line='45', fit=True)
+fig.show()
+```
+
+    /Users/lore.dirick/anaconda3/lib/python3.6/site-packages/matplotlib/figure.py:418: UserWarning: matplotlib is currently using a non-GUI backend, so cannot show the figure
+      "matplotlib is currently using a non-GUI backend, "
+
+
+
+![png](index_files/index_22_1.png)
+
+
+
+```python
+# Record Your observations on the normality assumption
+
+# With a pretty good QQ plot the normality assumption of the residuals seems fulfilled.
+```
+
+## Step 9: Repeat the above for radio and record your observations
 
 
 ```python
@@ -447,6 +472,10 @@ plt.show()
 fig = plt.figure(figsize=(15,8))
 fig = sm.graphics.plot_regress_exog(model, "radio", fig=fig)
 plt.show()
+import scipy.stats as stats
+residuals = model.resid
+fig = sm.graphics.qqplot(residuals, dist=stats.norm, line='45', fit=True)
+fig.show()
 ```
 
     R-Squared: 0.33203245544529547
@@ -456,11 +485,19 @@ plt.show()
 
 
 
-![png](index_files/index_22_1.png)
+![png](index_files/index_25_1.png)
 
 
 
-![png](index_files/index_22_2.png)
+![png](index_files/index_25_2.png)
+
+
+    /Users/lore.dirick/anaconda3/lib/python3.6/site-packages/matplotlib/figure.py:418: UserWarning: matplotlib is currently using a non-GUI backend, so cannot show the figure
+      "matplotlib is currently using a non-GUI backend, "
+
+
+
+![png](index_files/index_25_4.png)
 
 
 
@@ -535,7 +572,8 @@ model.summary()
 
 
 # As a predictor, radio performs worse than TV. 
-# It has higher amount of skewness and kurtosis than TV.
+# It has higher amount of skewness and kurtosis than TV. After running the model, it also became clear that 
+# the residuals QQ plot looks off, so the normality assumption is not fulfilled.
 # A very low R_squared explaining only 33% of variance in the target variable.
 
 # A "unit" increase in radio spending is associated with a 0.2025 "unit" increase in Sales.

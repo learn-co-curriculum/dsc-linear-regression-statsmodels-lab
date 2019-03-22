@@ -379,29 +379,28 @@ Hint: You can use the `model.predict()` function to predict the start and end po
 
 
 ```python
-# Record Your observations on residuals
+# Record Your observations on heteroscedasticity
 ```
 
-## Step 8: Repeat the above for radio and record your observations
+## Step 8: Check the normality assumptions by creating a QQ-plot
 
 
 ```python
+# Code for QQ-plot here
+```
+
+
+```python
+# Record Your observations on the normality assumption
 
 ```
 
-    R-Squared: 0.33203245544529525
-    Intercept    9.311638
-    radio        0.202496
-    dtype: float64
+## Step 9: Repeat the above for radio and record your observations
 
 
-
-![png](index_files/index_21_1.png)
-
-
-
-![png](index_files/index_21_2.png)
-
+```python
+# code for model, prediction line plot, heteroscedasticity check and QQ normality check here
+```
 
 
 ```python

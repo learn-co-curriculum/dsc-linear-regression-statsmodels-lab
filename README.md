@@ -231,8 +231,6 @@ In this lab, you'll work with the "Advertising Dataset", which is a very popular
 # Record your observations here 
 ```
 
-** Remember that nothing is perfect, so be positive!**
-<img src="images/skewed.jpg" width=400>
 
 ## Step 3: Test for the linearity assumption 
 

@@ -210,7 +210,7 @@ data.describe()
 # Looking at means for predictors, most budget is spent on TV marketing, and least on radio.
 ```
 
-## Step 2: Plot histograms with kde overlay to check for the normality of the predictors
+## Step 2: Plot histograms with kde overlay to check the distribution of the predictors
 
 
 ```python
@@ -248,8 +248,6 @@ for column in data:
 # The target variable "sales" is normally distributed with just a gentle skew
 ```
 
-** Remember that nothing is perfect, so be positive!**
-<img src="images/skewed.jpg" width=400>
 
 ## Step 3: Test for the linearity assumption 
 
@@ -548,7 +546,7 @@ model.summary()
 
 ## The Answer
 
-Based on above analysis, you can conclude that none of the two chosen predictors is ideal for modeling a relationship with the sales volumes. `Newspaper` clearly violated normality and linearity assumptions. `TV` and `radio` did not provide a high value for thw coefficient of determination, where TV performed slightly better than the radio. There is obvious heteroscdasticity in the residuals for both variables. 
+Based on above analysis, you can conclude that none of the two chosen predictors is ideal for modeling a relationship with the sales volumes. `Newspaper` clearly violated the linearity assumption. `TV` and `radio` did not provide a high value for the coefficient of determination, where TV performed slightly better than the radio. There is obvious heteroscdasticity in the residuals for both variables. 
 
 > We can either look for further data, perform extra preprocessing or use more advanced techniques. 
 

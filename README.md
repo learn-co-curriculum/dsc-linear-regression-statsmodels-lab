@@ -214,7 +214,7 @@ data.describe()
 
 
 ```python
-# For all the variables, check if they hold normality assumption
+# For all the variables, check distribution by creating a histogram with kde
 for column in data:
     data[column].plot.hist(normed=True, label = column+' histogram')
     data[column].plot.kde(label =column+' kde')
@@ -240,7 +240,7 @@ for column in data:
 
 
 ```python
-# Record your observations on normality here 
+# Record your observations here 
 
 # No variable is "perfectly" normal, but these do tend to follow an overall normal pattern. 
 # We see major skew in the newspaper predictor which could be problematic towards analysis. 

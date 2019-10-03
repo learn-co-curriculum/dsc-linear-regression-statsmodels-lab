@@ -3,219 +3,57 @@
 
 ## Introduction
 
-In the previous Codealong, you looked at all the requirements for running an OLS simple regression using Statsmodels. You worked with the height-weight data to understand the process and all the necessary steps that must be performed. In this lab , you'll explore slightly more complex example to study the impact of spendings in different advertising channels of total sales.
-
-## Objectives
-
-You will be able to:
-* Set up an analytical question to be answered by regression analysis
-* Study regression assumptions for real world datasets
-* Visualize the results of regression analysis
-
-## Let's get started
-
-In this lab, you'll work with the "Advertising Dataset", which is a very popular dataset for studying simple regression. [The dataset is available on Kaggle](https://www.kaggle.com/purbar/advertising-data), but we have downloaded it for you. It is available in this repository as `advertising.csv`. You'll use this dataset to answer this question:
+In this lab, you'll work with the "Advertising Data", which is a very popular dataset for studying simple regression. [The dataset is available on Kaggle](https://www.kaggle.com/purbar/advertising-data), but we have downloaded it for you. It is available in this repository as `'advertising.csv'`. You'll use this dataset to answer the question:
 
 > Which advertising channel has the strongest relationship with sales volume, and can be used to model and predict the sales?
 
-## Step 1: Read the dataset and inspect its columns and 5-point statistics
+
+
+## Task 1: Import the data
+
+1. Import `pandas` using the standard alias. 
+2. Import `matplotlib.pyplot` using the standard alias and use the `'ggplot'` style for your plots. 
+3. Import the dataset `'advertising.csv'` into a DataFrame called `data`. 
+4. Inspect the first few rows of `data`. 
+5. Print the 5-point statistics of `data`. 
+6. What do you think about this dataset? Any observations? 
 
 
 ```python
-# Load necessary libraries and import the data
-
-```
+# 1. Import pandas
 
 
-```python
-# Check the columns and first few rows
-
-```
+# 2. Import matplitlib.pyplot and set the plot style 
 
 
+# 3. Import the dataset
 
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>TV</th>
-      <th>radio</th>
-      <th>newspaper</th>
-      <th>sales</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>230.1</td>
-      <td>37.8</td>
-      <td>69.2</td>
-      <td>22.1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>44.5</td>
-      <td>39.3</td>
-      <td>45.1</td>
-      <td>10.4</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>17.2</td>
-      <td>45.9</td>
-      <td>69.3</td>
-      <td>9.3</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>151.5</td>
-      <td>41.3</td>
-      <td>58.5</td>
-      <td>18.5</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>180.8</td>
-      <td>10.8</td>
-      <td>58.4</td>
-      <td>12.9</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-```python
-# Get the 5-point statistics for data 
-
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>TV</th>
-      <th>radio</th>
-      <th>newspaper</th>
-      <th>sales</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>200.000000</td>
-      <td>200.000000</td>
-      <td>200.000000</td>
-      <td>200.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>147.042500</td>
-      <td>23.264000</td>
-      <td>30.554000</td>
-      <td>14.022500</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>85.854236</td>
-      <td>14.846809</td>
-      <td>21.778621</td>
-      <td>5.217457</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>0.700000</td>
-      <td>0.000000</td>
-      <td>0.300000</td>
-      <td>1.600000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>74.375000</td>
-      <td>9.975000</td>
-      <td>12.750000</td>
-      <td>10.375000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>149.750000</td>
-      <td>22.900000</td>
-      <td>25.750000</td>
-      <td>12.900000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>218.825000</td>
-      <td>36.525000</td>
-      <td>45.100000</td>
-      <td>17.400000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>296.400000</td>
-      <td>49.600000</td>
-      <td>114.000000</td>
-      <td>27.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-```python
-# Describe the contents of this dataset
 ```
 
 
 ```python
 # __SOLUTION__ 
-# Load necessary libraries and import the data
+# 1. Import pandas
 import pandas as pd
+
+# 2. Import matplitlib.pyplot and set the plot style 
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
+
+# 3. Import the dataset
 data = pd.read_csv('Advertising.csv', index_col=0)
 ```
 
 
 ```python
+# 4. Inspect the first few rows of data
+
+```
+
+
+```python
 # __SOLUTION__ 
-# Check the columns and first few rows
+# 4. Inspect the first few rows of data
 data.head()
 ```
 
@@ -290,8 +128,14 @@ data.head()
 
 
 ```python
+# 5. Get the 5-point statistics of data 
+
+```
+
+
+```python
 # __SOLUTION__ 
-# Get the 5-point statistics for data 
+# Get the 5-point statistics of data 
 data.describe()
 ```
 
@@ -396,60 +240,63 @@ data.describe()
 # Looking at means for predictors, most budget is spent on TV marketing, and least on radio.
 ```
 
-## Step 2: Plot histograms with kde overlay to check the distribution of the predictors
+## Task 2: Visualize the data
+
+1. Use a `for` loop to draw a histogram with a kernel density estimate (KDE) of all the features in `data` to check their distribution. 
+2. What are your thoughts about the features now? 
 
 
 ```python
-# For all the variables, check distribution by creating a histogram with kde
+# 1. For all the variables, check distribution by creating a histogram with a KDE
+
 
 ```
 
 
-![png](index_files/index_10_0.png)
+```python
+# __SOLUTION__ 
+# 1. For all the variables, check distribution by creating a histogram with a KDE 
+for column in data:
+    data[column].plot.hist(normed=True, label=column +' histogram')
+    data[column].plot.kde(label=column +' kde')
+    plt.legend()
+    plt.show()
+```
+
+    //anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py:1344: MatplotlibDeprecationWarning: 
+    The 'normed' kwarg was deprecated in Matplotlib 2.1 and will be removed in 3.1. Use 'density' instead.
+      n, bins, patches = ax.hist(y, bins=bins, bottom=bottom, **kwds)
 
 
 
 ![png](index_files/index_10_1.png)
 
 
-
-![png](index_files/index_10_2.png)
+    //anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py:1344: MatplotlibDeprecationWarning: 
+    The 'normed' kwarg was deprecated in Matplotlib 2.1 and will be removed in 3.1. Use 'density' instead.
+      n, bins, patches = ax.hist(y, bins=bins, bottom=bottom, **kwds)
 
 
 
 ![png](index_files/index_10_3.png)
 
 
-
-```python
-# Record your observations here 
-```
-
-
-```python
-# __SOLUTION__ 
-# For all the variables, check distribution by creating a histogram with kde
-for column in data:
-    data[column].plot.hist(normed=True, label = column+' histogram')
-    data[column].plot.kde(label =column+' kde')
-    plt.legend()
-    plt.show()
-```
-
-
-![png](index_files/index_12_0.png)
+    //anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py:1344: MatplotlibDeprecationWarning: 
+    The 'normed' kwarg was deprecated in Matplotlib 2.1 and will be removed in 3.1. Use 'density' instead.
+      n, bins, patches = ax.hist(y, bins=bins, bottom=bottom, **kwds)
 
 
 
-![png](index_files/index_12_1.png)
+![png](index_files/index_10_5.png)
+
+
+    //anaconda3/lib/python3.7/site-packages/pandas/plotting/_core.py:1344: MatplotlibDeprecationWarning: 
+    The 'normed' kwarg was deprecated in Matplotlib 2.1 and will be removed in 3.1. Use 'density' instead.
+      n, bins, patches = ax.hist(y, bins=bins, bottom=bottom, **kwds)
 
 
 
-![png](index_files/index_12_2.png)
-
-
-
-![png](index_files/index_12_3.png)
+![png](index_files/index_10_7.png)
 
 
 
@@ -464,29 +311,21 @@ for column in data:
 ```
 
 
-## Step 3: Test for the linearity assumption 
+## Task 3: Test for the linearity assumption 
 
-Use scatterplots to plot each predictor against the target variable
-
-
-```python
-# visualize the relationship between the preditors and the target using scatterplots
-
-```
-
-
-![png](index_files/index_15_0.png)
-
+1. Use a `for` loop to generate a scatterplot of each predictor against the target variable (`sales`). 
+2. What do you think about the relationship between each predictor and the target variable? 
 
 
 ```python
-# Record yor observations on linearity here 
+# 1. Visualize the relationship between the preditors and the target using scatterplots
+
 ```
 
 
 ```python
 # __SOLUTION__ 
-# visualize the relationship between the preditors and the target using scatterplots
+# 1. Visualize the relationship between the preditors and the target using scatterplots
 fig, axs = plt.subplots(1, 3, sharey=True, figsize=(18, 6))
 for idx, channel in enumerate(['TV', 'radio', 'newspaper']):
     data.plot(kind='scatter', x=channel, y='sales', ax=axs[idx], label=channel)
@@ -495,7 +334,7 @@ plt.show()
 ```
 
 
-![png](index_files/index_17_0.png)
+![png](index_files/index_14_0.png)
 
 
 
@@ -509,109 +348,62 @@ plt.show()
 # between newspaper and sales.
 ```
 
-### Conclusion so far
+### So far..
 
 Based on above initial checks, we can confidently say that TV and radio appear to be good predictors for our regression analysis. Newspaper is very heavily skewed and also doesnt show any clear linear relationship with the target. 
 > We'll move ahead with our analysis using TV and radio, and rule out newspaper because we believe it violates OLS assumptions
 
 Note: Kurtosis can be dealt with using techniques like log normalization to "push" the peak towards the center of distribution. You'll learn about this later on.
 
-## Step 4: Run a simple regression in Statsmodels with TV as a predictor
+
+## Task 4: Build a model
+
+1. Import `statsmodels.api` as `sm` and `statsmodels.formula.api` as `smf`.  
+2. Create the formula with `TV` as the predictor and `sales` as the target. 
+3. Build a simple linear regression model using this formula. 
 
 
 ```python
-# import libraries
+# 1. Import modules
 
-# build the formula 
 
-# create a fitted model in one line
 
+# 2. Create the formula 
+f = None
+
+# 3. Build the model
+model = None
 ```
 
 
 ```python
 # __SOLUTION__ 
-# import libraries
+# 1. Import modules
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 
-# build the formula 
+# 2. Create the formula 
 f = 'sales~TV'
-# create a fitted model in one line
+
+# 3. Build the model
 model = smf.ols(formula=f, data=data).fit()
 ```
 
-## Step 5: Get Regression Diagnostics Summary
+## Task 5: Model summary
+
+1. Use the `model`'s `.summary()` method to print model diagnostics. 
+2. Comment on the results. 
 
 
 ```python
+# 1. Print the summary of model
 
 ```
-
-
-
-
-<table class="simpletable">
-<caption>OLS Regression Results</caption>
-<tr>
-  <th>Dep. Variable:</th>          <td>sales</td>      <th>  R-squared:         </th> <td>   0.612</td>
-</tr>
-<tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.610</td>
-</tr>
-<tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   312.1</td>
-</tr>
-<tr>
-  <th>Date:</th>             <td>Fri, 12 Oct 2018</td> <th>  Prob (F-statistic):</th> <td>1.47e-42</td>
-</tr>
-<tr>
-  <th>Time:</th>                 <td>21:04:59</td>     <th>  Log-Likelihood:    </th> <td> -519.05</td>
-</tr>
-<tr>
-  <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1042.</td>
-</tr>
-<tr>
-  <th>Df Residuals:</th>          <td>   198</td>      <th>  BIC:               </th> <td>   1049.</td>
-</tr>
-<tr>
-  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>Intercept</th> <td>    7.0326</td> <td>    0.458</td> <td>   15.360</td> <td> 0.000</td> <td>    6.130</td> <td>    7.935</td>
-</tr>
-<tr>
-  <th>TV</th>        <td>    0.0475</td> <td>    0.003</td> <td>   17.668</td> <td> 0.000</td> <td>    0.042</td> <td>    0.053</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-  <th>Omnibus:</th>       <td> 0.531</td> <th>  Durbin-Watson:     </th> <td>   1.935</td>
-</tr>
-<tr>
-  <th>Prob(Omnibus):</th> <td> 0.767</td> <th>  Jarque-Bera (JB):  </th> <td>   0.669</td>
-</tr>
-<tr>
-  <th>Skew:</th>          <td>-0.089</td> <th>  Prob(JB):          </th> <td>   0.716</td>
-</tr>
-<tr>
-  <th>Kurtosis:</th>      <td> 2.779</td> <th>  Cond. No.          </th> <td>    338.</td>
-</tr>
-</table>
-
-
 
 
 ```python
 # __SOLUTION__ 
+# 1. Print the summary of model
 model.summary()
 ```
 
@@ -630,10 +422,10 @@ model.summary()
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   312.1</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Fri, 22 Mar 2019</td> <th>  Prob (F-statistic):</th> <td>1.47e-42</td>
+  <th>Date:</th>             <td>Thu, 03 Oct 2019</td> <th>  Prob (F-statistic):</th> <td>1.47e-42</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>13:16:34</td>     <th>  Log-Likelihood:    </th> <td> -519.05</td>
+  <th>Time:</th>                 <td>09:12:07</td>     <th>  Log-Likelihood:    </th> <td> -519.05</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1042.</td>
@@ -686,82 +478,107 @@ model.summary()
 # increase in Sales. OR An additional 1,000 spent on TV is associated with an increase in sales of 47.5 
 ```
 
-Note here that the coefficients represent associations, not causations
+> Note here that the coefficients represent associations, not causations. 
 
-## Step 6:  Draw a prediction line with data points on a scatter plot for X (TV) and Y (Sales)
+## Task 6:  Generate predictions 
 
-Hint: You can use the `model.predict()` function to predict the start and end point of of regression line for the minimum and maximum values in the 'TV' variable. 
+1. Create a DataFrame with one column (`TV`) and two rows: containing the minimum and maximum values of `data['TV']`. 
+2. Print this new DataFrame. 
+3. Make predictions for these values in `X_new` using the model you built.  
+4. Print these predictions. 
+5. Plot the observed data with `'TV'` on the x-axis and `'sales'` on the y-axis as a scatterplot.  
+6. Overlay a least squares line with the predictions on this plot. 
 
 
 ```python
-# create a DataFrame with the minimum and maximum values of TV
+# 1. Create a DataFrame with the minimum and maximum values of TV
+X_new = None
 
-# make predictions for those x values and store them
+# 2. Print X_new
+
+```
 
 
-# first, plot the observed data and the least squares line
+```python
+# __SOLUTION__ 
+# 1. Create a DataFrame with the minimum and maximum values of TV
+X_new = pd.DataFrame({'TV': [data['TV'].min(), data['TV'].max()]})
+
+# 2. Print X_new
+print(X_new)
 ```
 
           TV
     0    0.7
     1  296.4
+
+
+
+```python
+# 3. Make predictions for these values 
+preds = None
+
+# 4. Print preds
+
+```
+
+
+```python
+# __SOLUTION__ 
+# 3. Make predictions for these values 
+preds = model.predict(X_new)
+
+# 4. Print preds
+print(preds)
+```
+
     0     7.065869
     1    21.122454
     dtype: float64
 
 
 
-![png](index_files/index_27_1.png)
+```python
+# 5. Generate a scatterplot of the original data
 
+
+# 6. Overlay a regression line with the predicted values
+
+plt.show()
+```
 
 
 ```python
 # __SOLUTION__ 
-# create a DataFrame with the minimum and maximum values of TV
-X_new = pd.DataFrame({'TV': [data.TV.min(), data.TV.max()]})
-print(X_new.head())
-
-# make predictions for those x values and store them
-preds = model.predict(X_new)
-print (preds)
-
-# first, plot the observed data and the least squares line
+# 5. Generate a scatterplot of the original data
 data.plot(kind='scatter', x='TV', y='sales')
+
+# 6. Overlay a regression line with the predicted values
 plt.plot(X_new, preds, c='red', linewidth=2)
 plt.show()
 ```
 
-          TV
-    0    0.7
-    1  296.4
-    0     7.065869
-    1    21.122454
-    dtype: float64
+
+![png](index_files/index_29_0.png)
 
 
+## Task 7: Visualize the errors
 
-![png](index_files/index_28_1.png)
-
-
-## Step 7: Visualize the error term for variance and heteroscedasticity
+1. Plot the error terms. 
+2. Comment on the heteroscedasticity and variance of the errors. 
 
 
 ```python
+# 1. Plot the error terms 
+fig = plt.figure(figsize=(15,8))
 
-```
-
-
-![png](index_files/index_30_0.png)
-
-
-
-```python
-# Record Your observations on heteroscedasticity
+plt.show()
 ```
 
 
 ```python
 # __SOLUTION__ 
+# 1. Plot the error terms 
 fig = plt.figure(figsize=(15,8))
 fig = sm.graphics.plot_regress_exog(model, "TV", fig=fig)
 plt.show()
@@ -774,127 +591,104 @@ plt.show()
 
 ```python
 # __SOLUTION__ 
-# Record Your observations on heteroscedasticity
+# Record your observations on variance and heteroscedasticity
 
 # From the first and second plot in the first row, we see that the variance is 
 # creating a cone-shape which is a sign of heteroscedasticity. i.e. the residuals 
 # are heteroscedastic. This breaks the assumption.
 ```
 
-## Step 8: Check the normality assumptions by creating a QQ-plot
+## Task 8: Check the normality
+
+1. Build a QQ-plot to check the normality of the residuals.  
+2. How do the residuals look? 
 
 
 ```python
-# Code for QQ-plot here
-```
-
-
-```python
-# Record Your observations on the normality assumption
+# 1. Build a QQ-plot
 
 ```
 
 
 ```python
 # __SOLUTION__ 
+# 1. Build a QQ-plot 
 import scipy.stats as stats
 residuals = model.resid
 fig = sm.graphics.qqplot(residuals, dist=stats.norm, line='45', fit=True)
 fig.show()
 ```
 
-    /Users/lore.dirick/anaconda3/lib/python3.6/site-packages/matplotlib/figure.py:418: UserWarning: matplotlib is currently using a non-GUI backend, so cannot show the figure
-      "matplotlib is currently using a non-GUI backend, "
+    //anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:6: UserWarning: Matplotlib is currently using module://ipykernel.pylab.backend_inline, which is a non-GUI backend, so cannot show the figure.
+      
 
 
 
-![png](index_files/index_37_1.png)
+![png](index_files/index_36_1.png)
 
 
 
 ```python
 # __SOLUTION__ 
-# Record Your observations on the normality assumption
-
+# Record your observations on the normality assumption
 # With a pretty good QQ plot the normality assumption of the residuals seems fulfilled.
 ```
 
-## Step 9: Repeat the above for radio and record your observations
+## Task 9: Repeat tasks 4 through 8 for `radio`
 
 
 ```python
-# code for model, prediction line plot, heteroscedasticity check and QQ normality check here
+# 1. Create the formula with radio as the predictor and sales as the target
+
+
+# 2. Build the model
+
+
 ```
 
 
 ```python
-model.summary()
+# 3. Print the summary of model
+
 ```
 
 
+```python
+# 4. Create a DataFrame with the minimum and maximum values of radio
+X_new = None
 
-
-<table class="simpletable">
-<caption>OLS Regression Results</caption>
-<tr>
-  <th>Dep. Variable:</th>          <td>sales</td>      <th>  R-squared:         </th> <td>   0.332</td>
-</tr>
-<tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.329</td>
-</tr>
-<tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   98.42</td>
-</tr>
-<tr>
-  <th>Date:</th>             <td>Fri, 12 Oct 2018</td> <th>  Prob (F-statistic):</th> <td>4.35e-19</td>
-</tr>
-<tr>
-  <th>Time:</th>                 <td>20:52:55</td>     <th>  Log-Likelihood:    </th> <td> -573.34</td>
-</tr>
-<tr>
-  <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1151.</td>
-</tr>
-<tr>
-  <th>Df Residuals:</th>          <td>   198</td>      <th>  BIC:               </th> <td>   1157.</td>
-</tr>
-<tr>
-  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>Intercept</th> <td>    9.3116</td> <td>    0.563</td> <td>   16.542</td> <td> 0.000</td> <td>    8.202</td> <td>   10.422</td>
-</tr>
-<tr>
-  <th>radio</th>     <td>    0.2025</td> <td>    0.020</td> <td>    9.921</td> <td> 0.000</td> <td>    0.162</td> <td>    0.243</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-  <th>Omnibus:</th>       <td>19.358</td> <th>  Durbin-Watson:     </th> <td>   1.946</td>
-</tr>
-<tr>
-  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td>  21.910</td>
-</tr>
-<tr>
-  <th>Skew:</th>          <td>-0.764</td> <th>  Prob(JB):          </th> <td>1.75e-05</td>
-</tr>
-<tr>
-  <th>Kurtosis:</th>      <td> 3.544</td> <th>  Cond. No.          </th> <td>    51.4</td>
-</tr>
-</table>
-
-
+# 5. Print X_new
+X_new
+```
 
 
 ```python
-# Record your observations here for goodnes of fit 
+# 6. Make predictions for these values 
+preds = None
+
+# 7. Print preds
+preds
+```
+
+
+```python
+# 8. Generate a scatterplot of the original data
+
+
+# 9. Overlay a regression line with the predicted values
+
+```
+
+
+```python
+# 10. Plot the error terms 
+
+```
+
+
+```python
+# 11. Build a QQ-plot
+
 ```
 
 
@@ -902,7 +696,7 @@ model.summary()
 # __SOLUTION__ 
 f = 'sales~radio'
 model = smf.ols(formula=f, data=data).fit()
-print ('R-Squared:',model.rsquared)
+print ('R-Squared:', model.rsquared)
 print (model.params)
 X_new = pd.DataFrame({'radio': [data.radio.min(), data.radio.max()]});
 preds = model.predict(X_new)
@@ -910,7 +704,7 @@ data.plot(kind='scatter', x='radio', y='sales');
 plt.plot(X_new, preds, c='red', linewidth=2);
 plt.show()
 fig = plt.figure(figsize=(15,8))
-fig = sm.graphics.plot_regress_exog(model, "radio", fig=fig)
+fig = sm.graphics.plot_regress_exog(model, 'radio', fig=fig)
 plt.show()
 import scipy.stats as stats
 residuals = model.resid
@@ -918,93 +712,25 @@ fig = sm.graphics.qqplot(residuals, dist=stats.norm, line='45', fit=True)
 fig.show()
 ```
 
-    R-Squared: 0.33203245544529547
+    R-Squared: 0.33203245544529525
     Intercept    9.311638
     radio        0.202496
     dtype: float64
 
 
 
-![png](index_files/index_43_1.png)
+![png](index_files/index_46_1.png)
 
 
 
-![png](index_files/index_43_2.png)
+![png](index_files/index_46_2.png)
 
 
-    /Users/lore.dirick/anaconda3/lib/python3.6/site-packages/matplotlib/figure.py:418: UserWarning: matplotlib is currently using a non-GUI backend, so cannot show the figure
-      "matplotlib is currently using a non-GUI backend, "
-
-
-
-![png](index_files/index_43_4.png)
+    //anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:17: UserWarning: Matplotlib is currently using module://ipykernel.pylab.backend_inline, which is a non-GUI backend, so cannot show the figure.
 
 
 
-```python
-# __SOLUTION__ 
-model.summary()
-```
-
-
-
-
-<table class="simpletable">
-<caption>OLS Regression Results</caption>
-<tr>
-  <th>Dep. Variable:</th>          <td>sales</td>      <th>  R-squared:         </th> <td>   0.332</td>
-</tr>
-<tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.329</td>
-</tr>
-<tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   98.42</td>
-</tr>
-<tr>
-  <th>Date:</th>             <td>Thu, 07 Mar 2019</td> <th>  Prob (F-statistic):</th> <td>4.35e-19</td>
-</tr>
-<tr>
-  <th>Time:</th>                 <td>13:46:27</td>     <th>  Log-Likelihood:    </th> <td> -573.34</td>
-</tr>
-<tr>
-  <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1151.</td>
-</tr>
-<tr>
-  <th>Df Residuals:</th>          <td>   198</td>      <th>  BIC:               </th> <td>   1157.</td>
-</tr>
-<tr>
-  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>Intercept</th> <td>    9.3116</td> <td>    0.563</td> <td>   16.542</td> <td> 0.000</td> <td>    8.202</td> <td>   10.422</td>
-</tr>
-<tr>
-  <th>radio</th>     <td>    0.2025</td> <td>    0.020</td> <td>    9.921</td> <td> 0.000</td> <td>    0.162</td> <td>    0.243</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-  <th>Omnibus:</th>       <td>19.358</td> <th>  Durbin-Watson:     </th> <td>   1.946</td>
-</tr>
-<tr>
-  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td>  21.910</td>
-</tr>
-<tr>
-  <th>Skew:</th>          <td>-0.764</td> <th>  Prob(JB):          </th> <td>1.75e-05</td>
-</tr>
-<tr>
-  <th>Kurtosis:</th>      <td> 3.544</td> <th>  Cond. No.          </th> <td>    51.4</td>
-</tr>
-</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-
+![png](index_files/index_46_4.png)
 
 
 
@@ -1024,9 +750,9 @@ model.summary()
 # There is obvious heteroscedasticity as with the case of TV.
 ```
 
-## The Answer
+## Conclusion
 
-Based on above analysis, you can conclude that none of the two chosen predictors is ideal for modeling a relationship with the sales volumes. `Newspaper` clearly violated the linearity assumption. `TV` and `radio` did not provide a high value for the coefficient of determination, where TV performed slightly better than the radio. There is obvious heteroscdasticity in the residuals for both variables. 
+Based on above analysis, you can conclude that niether of the chosen predictors is ideal for modeling a relationship with the sales volumes. `Newspaper` clearly violated the linearity assumption. `TV` and `radio` did not provide a high value for the coefficient of determination, where `TV` performed slightly better than the `radio`. There is obvious heteroscdasticity in the residuals for both variables. 
 
 > We can either look for further data, perform extra preprocessing or use more advanced techniques. 
 
@@ -1038,4 +764,4 @@ In the following lesson, you'll look at the more details on interpreting the reg
 
 ## Summary
 
-In this lab, you ran a complete regression analysis with a simple dataset. You looked for the regression assumptions before and after the analysis phase. We also created some visualizations to develop a confidence on the model and check for its goodness of fit. 
+In this lab, you ran a complete regression analysis with a simple dataset. You looked for the regression assumptions before and after the analysis. We also created some visualizations to develop a confidence on the model and check for its goodness of fit. 

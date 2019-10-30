@@ -3,14 +3,14 @@
 
 ## Introduction
 
-In the previous Codealong, you looked at all the requirements for running an OLS simple regression using Statsmodels. You worked with the height-weight data to understand the process and all the necessary steps that must be performed. In this lab , you'll explore slightly more complex example to study the impact of spendings in different advertising channels of total sales.
+Previously, you looked at all the requirements for running an OLS simple linear regression using Statsmodels. You worked with the height-weight data set to understand the process and all of the necessary steps that must be performed. In this lab , you'll explore a slightly more complex example to study the impact of spending on different advertising channels on total sales.
 
 ## Objectives
 
 You will be able to:
-* Set up an analytical question to be answered by regression analysis
-* Study regression assumptions for real world datasets
-* Visualize the results of regression analysis
+* Perform a linear regression using statsmodels
+* Evaluate a linear regression model by using statistical performance metrics pertaining to overall model and specific parameters
+* Determine if a particular set of data exhibits the assumptions of linear regression
 
 ## Let's get started
 
@@ -207,7 +207,7 @@ data.describe()
 # In every record, we have three predictors showing the advertising budget spent on TV, newspaper 
 # and radio and a target variable (sales). The target variable shows the sales figure for each marketing 
 # campaign along with money spent on all three channels. 
-# Looking at means for predictors, most budget is spent on TV marketing, and least on radio.
+# Looking at means for predictors, most of the budget is spent on TV marketing, and the least is spent on radio.
 ```
 
 ## Step 2: Plot histograms with kde overlay to check the distribution of the predictors
@@ -273,7 +273,7 @@ plt.show()
 
 # TV seems to be a good feature due to highly linear relationship with sales
 # radio shows a linear pattern as well but there a higher level of variance in there than TV
-# newspaper is worse, there is too much variance along y-axis and theres no clear linear relationship 
+# newspaper is worse, there is too much variance along the y-axis and there's no clear linear relationship 
 # between newspaper and sales.
 ```
 
@@ -370,9 +370,9 @@ model.summary()
 ```python
 # Record your observations on "Goodness of fit" here
 
-# R-squared value is 0.61 i.e. 61% of variance in the target variable can be explained using the spendings on TV. 
+# The R-squared value is 0.61 i.e. 61% of the variance in the target variable can be explained by TV spending. 
 # The Intercept: A "unit" increase in TV spending is associated with a 0.0475 "unit" 
-# increase in Sales. OR An additional 1,000 spent on TV is associated with an increase in sales of 47.5 
+# increase in Sales or an additional 1,000 spent on TV is associated with an increase in sales of 47.5 
 ```
 
 Note here that the coefficients represent associations, not causations
@@ -426,9 +426,8 @@ plt.show()
 ```python
 # Record Your observations on heteroscedasticity
 
-# From the first and second plot in the first row, we see that the variance is 
-# creating a cone-shape which is a sign of heteroscedasticity. i.e. the residuals 
-# are heteroscedastic. This breaks the assumption.
+# From the first and second plot in the first row, we see a cone-shape which is a sign of heteroscedasticity. 
+# i.e. the residuals are heteroscedastic. This violates an assumption.
 ```
 
 ## Step 8: Check the normality assumptions by creating a QQ-plot
@@ -577,18 +576,18 @@ model.summary()
 # A very low R_squared explaining only 33% of variance in the target variable.
 
 # A "unit" increase in radio spending is associated with a 0.2025 "unit" increase in Sales.
-# OR An additional 1,000 spent on TV is associated with an increase in sales of 20.02
+# OR An additional 1,000 spent on TV is associated with an increase in sales of 202.5
 
 # There is obvious heteroscedasticity as with the case of TV.
 ```
 
 ## The Answer
 
-Based on above analysis, you can conclude that none of the two chosen predictors is ideal for modeling a relationship with the sales volumes. `Newspaper` clearly violated the linearity assumption. `TV` and `radio` did not provide a high value for the coefficient of determination, where TV performed slightly better than the radio. There is obvious heteroscdasticity in the residuals for both variables. 
+Based on the above analysis, you can conclude that none of the two chosen predictors is ideal for modeling a relationship with the sales volumes. `Newspaper` clearly violated the linearity assumption. `TV` and `radio` did not provide a high value for the coefficient of determination, where TV performed slightly better than the radio. There is obvious heteroscdasticity in the residuals for both variables. 
 
 > We can either look for further data, perform extra preprocessing or use more advanced techniques. 
 
-Remember there are lots of technqiues we can employ to fix these data. 
+Remember there are lots of techniques we can employ to fix these data. 
 
 Whether we should call TV the "best predictor" or label all of them "equally useless", is a domain specific question and a marketing manager would have a better opinion on how to move forward with this situation. 
 
@@ -596,4 +595,4 @@ In the following lesson, you'll look at the more details on interpreting the reg
 
 ## Summary
 
-In this lab, you ran a complete regression analysis with a simple dataset. You looked for the regression assumptions before and after the analysis phase. We also created some visualizations to develop a confidence on the model and check for its goodness of fit. 
+In this lab, you ran a complete regression analysis with a simple dataset. You used statsmodel to perform linear regression and evaluated your models using statistical metrics. You also looked for the regression assumptions before and after the analysis phase. Finally, you created some visualizations of your models and checked their goodness of fit. 

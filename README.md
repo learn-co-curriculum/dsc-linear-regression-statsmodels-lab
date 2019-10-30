@@ -3,14 +3,14 @@
 
 ## Introduction
 
-In the previous Codealong, you looked at all the requirements for running an OLS simple regression using Statsmodels. You worked with the height-weight data to understand the process and all the necessary steps that must be performed. In this lab , you'll explore slightly more complex example to study the impact of spendings in different advertising channels of total sales.
+Previously, you looked at all the requirements for running an OLS simple linear regression using Statsmodels. You worked with the height-weight data set to understand the process and all of the necessary steps that must be performed. In this lab , you'll explore a slightly more complex example to study the impact of spending on different advertising channels on total sales.
 
 ## Objectives
 
 You will be able to:
-* Set up an analytical question to be answered by regression analysis
-* Study regression assumptions for real world datasets
-* Visualize the results of regression analysis
+* Perform a linear regression using statsmodels
+* Evaluate a linear regression model by using statistical performance metrics pertaining to overall model and specific parameters
+* Determine if a particular set of data exhibits the assumptions of linear regression
 
 ## Let's get started
 
@@ -475,11 +475,11 @@ model.summary()
 
 ## The Answer
 
-Based on above analysis, you can conclude that none of the two chosen predictors is ideal for modeling a relationship with the sales volumes. `Newspaper` clearly violated the linearity assumption. `TV` and `radio` did not provide a high value for the coefficient of determination, where TV performed slightly better than the radio. There is obvious heteroscdasticity in the residuals for both variables. 
+Based on the above analysis, you can conclude that none of the two chosen predictors is ideal for modeling a relationship with the sales volumes. `Newspaper` clearly violated the linearity assumption. `TV` and `radio` did not provide a high value for the coefficient of determination, where TV performed slightly better than the radio. There is obvious heteroscdasticity in the residuals for both variables. 
 
 > We can either look for further data, perform extra preprocessing or use more advanced techniques. 
 
-Remember there are lots of technqiues we can employ to fix these data. 
+Remember there are lots of techniques we can employ to fix these data. 
 
 Whether we should call TV the "best predictor" or label all of them "equally useless", is a domain specific question and a marketing manager would have a better opinion on how to move forward with this situation. 
 
@@ -487,4 +487,4 @@ In the following lesson, you'll look at the more details on interpreting the reg
 
 ## Summary
 
-In this lab, you ran a complete regression analysis with a simple dataset. You looked for the regression assumptions before and after the analysis phase. We also created some visualizations to develop a confidence on the model and check for its goodness of fit. 
+In this lab, you ran a complete regression analysis with a simple dataset. You used statsmodel to perform linear regression and evaluated your models using statistical metrics. You also looked for the regression assumptions before and after the analysis phase. Finally, you created some visualizations of your models and checked their goodness of fit. 

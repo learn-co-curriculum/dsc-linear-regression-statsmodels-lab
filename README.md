@@ -33,169 +33,10 @@ In this lab, you'll work with the "Advertising Dataset", which is a very popular
 ```
 
 
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>TV</th>
-      <th>radio</th>
-      <th>newspaper</th>
-      <th>sales</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>230.1</td>
-      <td>37.8</td>
-      <td>69.2</td>
-      <td>22.1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>44.5</td>
-      <td>39.3</td>
-      <td>45.1</td>
-      <td>10.4</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>17.2</td>
-      <td>45.9</td>
-      <td>69.3</td>
-      <td>9.3</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>151.5</td>
-      <td>41.3</td>
-      <td>58.5</td>
-      <td>18.5</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>180.8</td>
-      <td>10.8</td>
-      <td>58.4</td>
-      <td>12.9</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
 ```python
 # Get the 5-point statistics for data 
 
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>TV</th>
-      <th>radio</th>
-      <th>newspaper</th>
-      <th>sales</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>200.000000</td>
-      <td>200.000000</td>
-      <td>200.000000</td>
-      <td>200.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>147.042500</td>
-      <td>23.264000</td>
-      <td>30.554000</td>
-      <td>14.022500</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>85.854236</td>
-      <td>14.846809</td>
-      <td>21.778621</td>
-      <td>5.217457</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>0.700000</td>
-      <td>0.000000</td>
-      <td>0.300000</td>
-      <td>1.600000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>74.375000</td>
-      <td>9.975000</td>
-      <td>12.750000</td>
-      <td>10.375000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>149.750000</td>
-      <td>22.900000</td>
-      <td>25.750000</td>
-      <td>12.900000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>218.825000</td>
-      <td>36.525000</td>
-      <td>45.100000</td>
-      <td>17.400000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>296.400000</td>
-      <td>49.600000</td>
-      <td>114.000000</td>
-      <td>27.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 
 ```python
@@ -208,6 +49,7 @@ In this lab, you'll work with the "Advertising Dataset", which is a very popular
 # Load necessary libraries and import the data
 import pandas as pd
 import matplotlib.pyplot as plt
+%matplotlib inline
 plt.style.use('ggplot')
 data = pd.read_csv('Advertising.csv', index_col=0)
 ```
@@ -405,22 +247,6 @@ data.describe()
 ```
 
 
-![png](index_files/index_10_0.png)
-
-
-
-![png](index_files/index_10_1.png)
-
-
-
-![png](index_files/index_10_2.png)
-
-
-
-![png](index_files/index_10_3.png)
-
-
-
 ```python
 # Record your observations here 
 ```
@@ -430,7 +256,7 @@ data.describe()
 # __SOLUTION__ 
 # For all the variables, check distribution by creating a histogram with kde
 for column in data:
-    data[column].plot.hist(normed=True, label = column+' histogram')
+    data[column].plot.hist(density=True, label = column+' histogram')
     data[column].plot.kde(label =column+' kde')
     plt.legend()
     plt.show()
@@ -473,10 +299,6 @@ Use scatterplots to plot each predictor against the target variable
 # visualize the relationship between the preditors and the target using scatterplots
 
 ```
-
-
-![png](index_files/index_15_0.png)
-
 
 
 ```python
@@ -549,67 +371,6 @@ model = smf.ols(formula=f, data=data).fit()
 ```
 
 
-
-
-<table class="simpletable">
-<caption>OLS Regression Results</caption>
-<tr>
-  <th>Dep. Variable:</th>          <td>sales</td>      <th>  R-squared:         </th> <td>   0.612</td>
-</tr>
-<tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.610</td>
-</tr>
-<tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   312.1</td>
-</tr>
-<tr>
-  <th>Date:</th>             <td>Fri, 12 Oct 2018</td> <th>  Prob (F-statistic):</th> <td>1.47e-42</td>
-</tr>
-<tr>
-  <th>Time:</th>                 <td>21:04:59</td>     <th>  Log-Likelihood:    </th> <td> -519.05</td>
-</tr>
-<tr>
-  <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1042.</td>
-</tr>
-<tr>
-  <th>Df Residuals:</th>          <td>   198</td>      <th>  BIC:               </th> <td>   1049.</td>
-</tr>
-<tr>
-  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>Intercept</th> <td>    7.0326</td> <td>    0.458</td> <td>   15.360</td> <td> 0.000</td> <td>    6.130</td> <td>    7.935</td>
-</tr>
-<tr>
-  <th>TV</th>        <td>    0.0475</td> <td>    0.003</td> <td>   17.668</td> <td> 0.000</td> <td>    0.042</td> <td>    0.053</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-  <th>Omnibus:</th>       <td> 0.531</td> <th>  Durbin-Watson:     </th> <td>   1.935</td>
-</tr>
-<tr>
-  <th>Prob(Omnibus):</th> <td> 0.767</td> <th>  Jarque-Bera (JB):  </th> <td>   0.669</td>
-</tr>
-<tr>
-  <th>Skew:</th>          <td>-0.089</td> <th>  Prob(JB):          </th> <td>   0.716</td>
-</tr>
-<tr>
-  <th>Kurtosis:</th>      <td> 2.779</td> <th>  Cond. No.          </th> <td>    338.</td>
-</tr>
-</table>
-
-
-
-
 ```python
 # __SOLUTION__ 
 model.summary()
@@ -630,10 +391,10 @@ model.summary()
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   312.1</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Fri, 22 Mar 2019</td> <th>  Prob (F-statistic):</th> <td>1.47e-42</td>
+  <th>Date:</th>             <td>Wed, 21 Oct 2020</td> <th>  Prob (F-statistic):</th> <td>1.47e-42</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>13:16:34</td>     <th>  Log-Likelihood:    </th> <td> -519.05</td>
+  <th>Time:</th>                 <td>14:00:49</td>     <th>  Log-Likelihood:    </th> <td> -519.05</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1042.</td>
@@ -672,7 +433,7 @@ model.summary()
 <tr>
   <th>Kurtosis:</th>      <td> 2.779</td> <th>  Cond. No.          </th> <td>    338.</td>
 </tr>
-</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
 
 
@@ -701,18 +462,6 @@ Hint: You can use the `model.predict()` function to predict the start and end po
 
 # first, plot the observed data and the least squares line
 ```
-
-          TV
-    0    0.7
-    1  296.4
-    0     7.065869
-    1    21.122454
-    dtype: float64
-
-
-
-![png](index_files/index_27_1.png)
-
 
 
 ```python
@@ -749,10 +498,6 @@ plt.show()
 ```python
 
 ```
-
-
-![png](index_files/index_30_0.png)
-
 
 
 ```python
@@ -802,8 +547,8 @@ fig = sm.graphics.qqplot(residuals, dist=stats.norm, line='45', fit=True)
 fig.show()
 ```
 
-    /Users/lore.dirick/anaconda3/lib/python3.6/site-packages/matplotlib/figure.py:418: UserWarning: matplotlib is currently using a non-GUI backend, so cannot show the figure
-      "matplotlib is currently using a non-GUI backend, "
+    <ipython-input-23-ed1baae3f3c9>:5: UserWarning: Matplotlib is currently using module://ipykernel.pylab.backend_inline, which is a non-GUI backend, so cannot show the figure.
+      fig.show()
 
 
 
@@ -829,67 +574,6 @@ fig.show()
 ```python
 model.summary()
 ```
-
-
-
-
-<table class="simpletable">
-<caption>OLS Regression Results</caption>
-<tr>
-  <th>Dep. Variable:</th>          <td>sales</td>      <th>  R-squared:         </th> <td>   0.332</td>
-</tr>
-<tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.329</td>
-</tr>
-<tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   98.42</td>
-</tr>
-<tr>
-  <th>Date:</th>             <td>Fri, 12 Oct 2018</td> <th>  Prob (F-statistic):</th> <td>4.35e-19</td>
-</tr>
-<tr>
-  <th>Time:</th>                 <td>20:52:55</td>     <th>  Log-Likelihood:    </th> <td> -573.34</td>
-</tr>
-<tr>
-  <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1151.</td>
-</tr>
-<tr>
-  <th>Df Residuals:</th>          <td>   198</td>      <th>  BIC:               </th> <td>   1157.</td>
-</tr>
-<tr>
-  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>Intercept</th> <td>    9.3116</td> <td>    0.563</td> <td>   16.542</td> <td> 0.000</td> <td>    8.202</td> <td>   10.422</td>
-</tr>
-<tr>
-  <th>radio</th>     <td>    0.2025</td> <td>    0.020</td> <td>    9.921</td> <td> 0.000</td> <td>    0.162</td> <td>    0.243</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-  <th>Omnibus:</th>       <td>19.358</td> <th>  Durbin-Watson:     </th> <td>   1.946</td>
-</tr>
-<tr>
-  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td>  21.910</td>
-</tr>
-<tr>
-  <th>Skew:</th>          <td>-0.764</td> <th>  Prob(JB):          </th> <td>1.75e-05</td>
-</tr>
-<tr>
-  <th>Kurtosis:</th>      <td> 3.544</td> <th>  Cond. No.          </th> <td>    51.4</td>
-</tr>
-</table>
-
-
 
 
 ```python
@@ -931,8 +615,8 @@ fig.show()
 ![png](index_files/index_43_2.png)
 
 
-    /Users/lore.dirick/anaconda3/lib/python3.6/site-packages/matplotlib/figure.py:418: UserWarning: matplotlib is currently using a non-GUI backend, so cannot show the figure
-      "matplotlib is currently using a non-GUI backend, "
+    <ipython-input-24-b0db10be8989>:17: UserWarning: Matplotlib is currently using module://ipykernel.pylab.backend_inline, which is a non-GUI backend, so cannot show the figure.
+      fig.show()
 
 
 
@@ -944,67 +628,6 @@ fig.show()
 # __SOLUTION__ 
 model.summary()
 ```
-
-
-
-
-<table class="simpletable">
-<caption>OLS Regression Results</caption>
-<tr>
-  <th>Dep. Variable:</th>          <td>sales</td>      <th>  R-squared:         </th> <td>   0.332</td>
-</tr>
-<tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.329</td>
-</tr>
-<tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   98.42</td>
-</tr>
-<tr>
-  <th>Date:</th>             <td>Thu, 07 Mar 2019</td> <th>  Prob (F-statistic):</th> <td>4.35e-19</td>
-</tr>
-<tr>
-  <th>Time:</th>                 <td>13:46:27</td>     <th>  Log-Likelihood:    </th> <td> -573.34</td>
-</tr>
-<tr>
-  <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1151.</td>
-</tr>
-<tr>
-  <th>Df Residuals:</th>          <td>   198</td>      <th>  BIC:               </th> <td>   1157.</td>
-</tr>
-<tr>
-  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>Intercept</th> <td>    9.3116</td> <td>    0.563</td> <td>   16.542</td> <td> 0.000</td> <td>    8.202</td> <td>   10.422</td>
-</tr>
-<tr>
-  <th>radio</th>     <td>    0.2025</td> <td>    0.020</td> <td>    9.921</td> <td> 0.000</td> <td>    0.162</td> <td>    0.243</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-  <th>Omnibus:</th>       <td>19.358</td> <th>  Durbin-Watson:     </th> <td>   1.946</td>
-</tr>
-<tr>
-  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td>  21.910</td>
-</tr>
-<tr>
-  <th>Skew:</th>          <td>-0.764</td> <th>  Prob(JB):          </th> <td>1.75e-05</td>
-</tr>
-<tr>
-  <th>Kurtosis:</th>      <td> 3.544</td> <th>  Cond. No.          </th> <td>    51.4</td>
-</tr>
-</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-
-
 
 
 ```python

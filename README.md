@@ -25,6 +25,7 @@ In this lab, you'll work with the "Advertising Dataset", which is a very popular
 # Load necessary libraries and import the data
 import pandas as pd
 import matplotlib.pyplot as plt
+%matplotlib inline
 plt.style.use('ggplot')
 data = pd.read_csv('Advertising.csv', index_col=0)
 ```
@@ -216,7 +217,7 @@ data.describe()
 ```python
 # For all the variables, check distribution by creating a histogram with kde
 for column in data:
-    data[column].plot.hist(normed=True, label = column+' histogram')
+    data[column].plot.hist(density=True, label = column+' histogram')
     data[column].plot.kde(label =column+' kde')
     plt.legend()
     plt.show()
@@ -320,10 +321,10 @@ model.summary()
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   312.1</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Fri, 22 Mar 2019</td> <th>  Prob (F-statistic):</th> <td>1.47e-42</td>
+  <th>Date:</th>             <td>Wed, 21 Oct 2020</td> <th>  Prob (F-statistic):</th> <td>1.47e-42</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>13:16:34</td>     <th>  Log-Likelihood:    </th> <td> -519.05</td>
+  <th>Time:</th>                 <td>14:00:49</td>     <th>  Log-Likelihood:    </th> <td> -519.05</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1042.</td>
@@ -362,7 +363,7 @@ model.summary()
 <tr>
   <th>Kurtosis:</th>      <td> 2.779</td> <th>  Cond. No.          </th> <td>    338.</td>
 </tr>
-</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
 
 
@@ -440,8 +441,8 @@ fig = sm.graphics.qqplot(residuals, dist=stats.norm, line='45', fit=True)
 fig.show()
 ```
 
-    /Users/lore.dirick/anaconda3/lib/python3.6/site-packages/matplotlib/figure.py:418: UserWarning: matplotlib is currently using a non-GUI backend, so cannot show the figure
-      "matplotlib is currently using a non-GUI backend, "
+    <ipython-input-23-ed1baae3f3c9>:5: UserWarning: Matplotlib is currently using module://ipykernel.pylab.backend_inline, which is a non-GUI backend, so cannot show the figure.
+      fig.show()
 
 
 
@@ -491,8 +492,8 @@ fig.show()
 ![png](index_files/index_25_2.png)
 
 
-    /Users/lore.dirick/anaconda3/lib/python3.6/site-packages/matplotlib/figure.py:418: UserWarning: matplotlib is currently using a non-GUI backend, so cannot show the figure
-      "matplotlib is currently using a non-GUI backend, "
+    <ipython-input-24-b0db10be8989>:17: UserWarning: Matplotlib is currently using module://ipykernel.pylab.backend_inline, which is a non-GUI backend, so cannot show the figure.
+      fig.show()
 
 
 
@@ -503,67 +504,6 @@ fig.show()
 ```python
 model.summary()
 ```
-
-
-
-
-<table class="simpletable">
-<caption>OLS Regression Results</caption>
-<tr>
-  <th>Dep. Variable:</th>          <td>sales</td>      <th>  R-squared:         </th> <td>   0.332</td>
-</tr>
-<tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.329</td>
-</tr>
-<tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   98.42</td>
-</tr>
-<tr>
-  <th>Date:</th>             <td>Thu, 07 Mar 2019</td> <th>  Prob (F-statistic):</th> <td>4.35e-19</td>
-</tr>
-<tr>
-  <th>Time:</th>                 <td>13:46:27</td>     <th>  Log-Likelihood:    </th> <td> -573.34</td>
-</tr>
-<tr>
-  <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1151.</td>
-</tr>
-<tr>
-  <th>Df Residuals:</th>          <td>   198</td>      <th>  BIC:               </th> <td>   1157.</td>
-</tr>
-<tr>
-  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>Intercept</th> <td>    9.3116</td> <td>    0.563</td> <td>   16.542</td> <td> 0.000</td> <td>    8.202</td> <td>   10.422</td>
-</tr>
-<tr>
-  <th>radio</th>     <td>    0.2025</td> <td>    0.020</td> <td>    9.921</td> <td> 0.000</td> <td>    0.162</td> <td>    0.243</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-  <th>Omnibus:</th>       <td>19.358</td> <th>  Durbin-Watson:     </th> <td>   1.946</td>
-</tr>
-<tr>
-  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td>  21.910</td>
-</tr>
-<tr>
-  <th>Skew:</th>          <td>-0.764</td> <th>  Prob(JB):          </th> <td>1.75e-05</td>
-</tr>
-<tr>
-  <th>Kurtosis:</th>      <td> 3.544</td> <th>  Cond. No.          </th> <td>    51.4</td>
-</tr>
-</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-
-
 
 
 ```python

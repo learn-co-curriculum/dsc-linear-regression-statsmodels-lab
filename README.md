@@ -1,4 +1,3 @@
-
 # Ordinary Least Squares in Statsmodels (OLS) - Lab
 
 ## Introduction

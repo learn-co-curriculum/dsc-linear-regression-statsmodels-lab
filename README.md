@@ -224,7 +224,7 @@ Now, use scatter plots to plot each predictor (TV, radio, newspaper) against the
 
 
 ```python
-# visualize the relationship between the preditors and the target using scatter plots
+# Visualize the relationship between the preditors and the target using scatter plots
 fig, axs = plt.subplots(1, 3, sharey=True, figsize=(18, 6))
 for idx, channel in enumerate(['TV', 'radio', 'newspaper']):
     data.plot(kind='scatter', x=channel, y='sales', ax=axs[idx], label=channel)
@@ -256,23 +256,23 @@ As the analysis above indicates, `TV` looks like it has the strongest relationsh
 
 
 ```python
-# import libraries
+# Import libraries
 import statsmodels.api as sm
 
-# determine X and y values
+# Determine X and y values
 X = data[["TV"]]
 y = data["sales"]
 
-# create an OLS model
+# Create an OLS model
 model = sm.OLS(endog=y, exog=sm.add_constant(X))
 ```
 
 
 ```python
-# get model results
+# Get model results
 results = model.fit()
 
-# display results summary
+# Display results summary
 print(results.summary())
 ```
 

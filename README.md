@@ -67,7 +67,7 @@ Now, use scatter plots to plot each predictor (TV, radio, newspaper) against the
 
 
 ```python
-# visualize the relationship between the preditors and the target using scatter plots
+# Visualize the relationship between the preditors and the target using scatter plots
 
 ```
 
@@ -75,7 +75,7 @@ Does there appear to be a linear relationship between these predictors and the t
 
 
 ```python
-# Record yor observations on linearity here 
+# Record your observations on linearity here 
 ```
 
 <details>
@@ -95,19 +95,19 @@ As the analysis above indicates, `TV` looks like it has the strongest relationsh
 
 
 ```python
-# import libraries
+# Import libraries
 
-# determine X and y values
+# Determine X and y values
 
-# create an OLS model
+# Create an OLS model
 
 ```
 
 
 ```python
-# get model results
+# Get model results
 
-# display results summary
+# Display results summary
 
 ```
 
@@ -141,7 +141,7 @@ Create at least one visualization that shows the prediction line against a scatt
 
 
 ```python
-# plot the model fit (scatter plot and regression line)
+# Plot the model fit (scatter plot and regression line)
 
 ```
 

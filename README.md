@@ -1,4 +1,3 @@
-
 # Ordinary Least Squares in Statsmodels (OLS) - Lab
 
 ## Introduction
@@ -50,7 +49,7 @@ In this lab, you'll work with the "Advertising Dataset", which is a very popular
 import pandas as pd
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
-data = pd.read_csv('Advertising.csv', index_col=0)
+data = pd.read_csv('advertising.csv', index_col=0)
 ```
 
 
@@ -89,35 +88,35 @@ data.head()
   </thead>
   <tbody>
     <tr>
-      <td>1</td>
+      <th>1</th>
       <td>230.1</td>
       <td>37.8</td>
       <td>69.2</td>
       <td>22.1</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>44.5</td>
       <td>39.3</td>
       <td>45.1</td>
       <td>10.4</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>17.2</td>
       <td>45.9</td>
       <td>69.3</td>
       <td>9.3</td>
     </tr>
     <tr>
-      <td>4</td>
+      <th>4</th>
       <td>151.5</td>
       <td>41.3</td>
       <td>58.5</td>
       <td>18.5</td>
     </tr>
     <tr>
-      <td>5</td>
+      <th>5</th>
       <td>180.8</td>
       <td>10.8</td>
       <td>58.4</td>
@@ -165,56 +164,56 @@ data.describe()
   </thead>
   <tbody>
     <tr>
-      <td>count</td>
+      <th>count</th>
       <td>200.000000</td>
       <td>200.000000</td>
       <td>200.000000</td>
       <td>200.000000</td>
     </tr>
     <tr>
-      <td>mean</td>
+      <th>mean</th>
       <td>147.042500</td>
       <td>23.264000</td>
       <td>30.554000</td>
       <td>14.022500</td>
     </tr>
     <tr>
-      <td>std</td>
+      <th>std</th>
       <td>85.854236</td>
       <td>14.846809</td>
       <td>21.778621</td>
       <td>5.217457</td>
     </tr>
     <tr>
-      <td>min</td>
+      <th>min</th>
       <td>0.700000</td>
       <td>0.000000</td>
       <td>0.300000</td>
       <td>1.600000</td>
     </tr>
     <tr>
-      <td>25%</td>
+      <th>25%</th>
       <td>74.375000</td>
       <td>9.975000</td>
       <td>12.750000</td>
       <td>10.375000</td>
     </tr>
     <tr>
-      <td>50%</td>
+      <th>50%</th>
       <td>149.750000</td>
       <td>22.900000</td>
       <td>25.750000</td>
       <td>12.900000</td>
     </tr>
     <tr>
-      <td>75%</td>
+      <th>75%</th>
       <td>218.825000</td>
       <td>36.525000</td>
       <td>45.100000</td>
       <td>17.400000</td>
     </tr>
     <tr>
-      <td>max</td>
+      <th>max</th>
       <td>296.400000</td>
       <td>49.600000</td>
       <td>114.000000</td>
@@ -262,19 +261,27 @@ for column in data:
 ```
 
 
+    
 ![png](index_files/index_12_0.png)
+    
 
 
 
+    
 ![png](index_files/index_12_1.png)
+    
 
 
 
+    
 ![png](index_files/index_12_2.png)
+    
 
 
 
+    
 ![png](index_files/index_12_3.png)
+    
 
 
 
@@ -316,7 +323,9 @@ plt.show()
 ```
 
 
+    
 ![png](index_files/index_17_0.png)
+    
 
 
 
@@ -390,10 +399,10 @@ model.summary()
   <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   312.1</td>
 </tr>
 <tr>
-  <th>Date:</th>             <td>Wed, 21 Oct 2020</td> <th>  Prob (F-statistic):</th> <td>1.47e-42</td>
+  <th>Date:</th>             <td>Fri, 06 May 2022</td> <th>  Prob (F-statistic):</th> <td>1.47e-42</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>15:14:48</td>     <th>  Log-Likelihood:    </th> <td> -519.05</td>
+  <th>Time:</th>                 <td>16:03:27</td>     <th>  Log-Likelihood:    </th> <td> -519.05</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1042.</td>
@@ -432,7 +441,7 @@ model.summary()
 <tr>
   <th>Kurtosis:</th>      <td> 2.779</td> <th>  Cond. No.          </th> <td>    338.</td>
 </tr>
-</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+</table><br/><br/>Notes:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
 
 
@@ -488,7 +497,9 @@ plt.show()
 
 
 
+    
 ![png](index_files/index_28_1.png)
+    
 
 
 ## Step 7: Visualize the error term for variance and heteroscedasticity
@@ -512,7 +523,9 @@ plt.show()
 ```
 
 
+    
 ![png](index_files/index_32_0.png)
+    
 
 
 
@@ -542,16 +555,14 @@ plt.show()
 # __SOLUTION__ 
 import scipy.stats as stats
 residuals = model.resid
-fig = sm.graphics.qqplot(residuals, dist=stats.norm, line='45', fit=True)
-fig.show()
+sm.graphics.qqplot(residuals, dist=stats.norm, line='45', fit=True)
+plt.show()
 ```
 
-    /Users/jeffrey.hinkle@wework.com/opt/anaconda3/envs/learn-env/lib/python3.6/site-packages/ipykernel_launcher.py:5: UserWarning: Matplotlib is currently using module://ipykernel.pylab.backend_inline, which is a non-GUI backend, so cannot show the figure.
-      """
 
-
-
-![png](index_files/index_37_1.png)
+    
+![png](index_files/index_37_0.png)
+    
 
 
 
@@ -597,28 +608,31 @@ plt.show()
 import scipy.stats as stats
 residuals = model.resid
 fig = sm.graphics.qqplot(residuals, dist=stats.norm, line='45', fit=True)
-fig.show()
+plt.show()
 ```
 
-    R-Squared: 0.33203245544529525
+    R-Squared: 0.33203245544529547
     Intercept    9.311638
     radio        0.202496
     dtype: float64
 
 
 
+    
 ![png](index_files/index_43_1.png)
+    
 
 
 
+    
 ![png](index_files/index_43_2.png)
-
-
-    /Users/jeffrey.hinkle@wework.com/opt/anaconda3/envs/learn-env/lib/python3.6/site-packages/ipykernel_launcher.py:17: UserWarning: Matplotlib is currently using module://ipykernel.pylab.backend_inline, which is a non-GUI backend, so cannot show the figure.
+    
 
 
 
-![png](index_files/index_43_4.png)
+    
+![png](index_files/index_43_3.png)
+    
 
 
 
@@ -626,67 +640,6 @@ fig.show()
 # __SOLUTION__ 
 model.summary()
 ```
-
-
-
-
-<table class="simpletable">
-<caption>OLS Regression Results</caption>
-<tr>
-  <th>Dep. Variable:</th>          <td>sales</td>      <th>  R-squared:         </th> <td>   0.332</td>
-</tr>
-<tr>
-  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.329</td>
-</tr>
-<tr>
-  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   98.42</td>
-</tr>
-<tr>
-  <th>Date:</th>             <td>Wed, 21 Oct 2020</td> <th>  Prob (F-statistic):</th> <td>4.35e-19</td>
-</tr>
-<tr>
-  <th>Time:</th>                 <td>15:15:39</td>     <th>  Log-Likelihood:    </th> <td> -573.34</td>
-</tr>
-<tr>
-  <th>No. Observations:</th>      <td>   200</td>      <th>  AIC:               </th> <td>   1151.</td>
-</tr>
-<tr>
-  <th>Df Residuals:</th>          <td>   198</td>      <th>  BIC:               </th> <td>   1157.</td>
-</tr>
-<tr>
-  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
-</tr>
-<tr>
-  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-      <td></td>         <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th>  <th>[0.025</th>    <th>0.975]</th>  
-</tr>
-<tr>
-  <th>Intercept</th> <td>    9.3116</td> <td>    0.563</td> <td>   16.542</td> <td> 0.000</td> <td>    8.202</td> <td>   10.422</td>
-</tr>
-<tr>
-  <th>radio</th>     <td>    0.2025</td> <td>    0.020</td> <td>    9.921</td> <td> 0.000</td> <td>    0.162</td> <td>    0.243</td>
-</tr>
-</table>
-<table class="simpletable">
-<tr>
-  <th>Omnibus:</th>       <td>19.358</td> <th>  Durbin-Watson:     </th> <td>   1.946</td>
-</tr>
-<tr>
-  <th>Prob(Omnibus):</th> <td> 0.000</td> <th>  Jarque-Bera (JB):  </th> <td>  21.910</td>
-</tr>
-<tr>
-  <th>Skew:</th>          <td>-0.764</td> <th>  Prob(JB):          </th> <td>1.75e-05</td>
-</tr>
-<tr>
-  <th>Kurtosis:</th>      <td> 3.544</td> <th>  Cond. No.          </th> <td>    51.4</td>
-</tr>
-</table><br/><br/>Warnings:<br/>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-
-
 
 
 ```python

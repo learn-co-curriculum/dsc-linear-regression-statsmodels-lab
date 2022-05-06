@@ -250,14 +250,14 @@ Now, use scatter plots to plot each predictor (TV, radio, newspaper) against the
 
 
 ```python
-# visualize the relationship between the preditors and the target using scatter plots
+# Visualize the relationship between the preditors and the target using scatter plots
 
 ```
 
 
 ```python
 # __SOLUTION__ 
-# visualize the relationship between the preditors and the target using scatter plots
+# Visualize the relationship between the preditors and the target using scatter plots
 fig, axs = plt.subplots(1, 3, sharey=True, figsize=(18, 6))
 for idx, channel in enumerate(['TV', 'radio', 'newspaper']):
     data.plot(kind='scatter', x=channel, y='sales', ax=axs[idx], label=channel)
@@ -274,7 +274,7 @@ Does there appear to be a linear relationship between these predictors and the t
 
 
 ```python
-# Record yor observations on linearity here 
+# Record your observations on linearity here 
 ```
 
 <details>
@@ -294,43 +294,43 @@ As the analysis above indicates, `TV` looks like it has the strongest relationsh
 
 
 ```python
-# import libraries
+# Import libraries
 
-# determine X and y values
+# Determine X and y values
 
-# create an OLS model
+# Create an OLS model
 
 ```
 
 
 ```python
 # __SOLUTION__ 
-# import libraries
+# Import libraries
 import statsmodels.api as sm
 
-# determine X and y values
+# Determine X and y values
 X = data[["TV"]]
 y = data["sales"]
 
-# create an OLS model
+# Create an OLS model
 model = sm.OLS(endog=y, exog=sm.add_constant(X))
 ```
 
 
 ```python
-# get model results
+# Get model results
 
-# display results summary
+# Display results summary
 
 ```
 
 
 ```python
 # __SOLUTION__
-# get model results
+# Get model results
 results = model.fit()
 
-# display results summary
+# Display results summary
 print(results.summary())
 ```
 
@@ -391,7 +391,7 @@ Create at least one visualization that shows the prediction line against a scatt
 
 
 ```python
-# plot the model fit (scatter plot and regression line)
+# Plot the model fit (scatter plot and regression line)
 
 ```
 

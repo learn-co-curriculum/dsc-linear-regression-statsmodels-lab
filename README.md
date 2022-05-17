@@ -375,7 +375,7 @@ How does this model perform overall? What do the coefficients say about the rela
 
 Overall the model and coefficients are **statistically significant**, with all p-values well below a standard alpha of 0.05.
 
-The R-squared value is about 0.61 i.e. **61% of the variance in the target variable can be explained by TV spending((.
+The R-squared value is about 0.61 i.e. **61% of the variance in the target variable can be explained by TV spending**.
 
 The intercept is about 7.0, meaning that if we spent 0 on TV, we would expect sales of about 7k widgets (the units of `sales` are in thousands of widgets).
 
@@ -714,7 +714,7 @@ ax.set_ylabel("residuals");
 
 Technically our model and coefficients are **still statistically significant** at an alpha of 0.05, but the p-values are much higher. For both the F-statistic (overall model significance) and the `newspaper` coefficient, our p-values are about 0.001, meaning that there is about a 0.1% chance that a variable with _no linear relationship_ would produce these statistics. That is a pretty small false positive rate, so we'll consider the model to be statistically significant and move on to interpreting the other results.
 
-The R-Squared here is the smallest we have seen yet: 0.05. This means that **the model explains about 5% of the variance in `sales`((. 5% is well below both the `radio` model (33%) and the `TV` model (61%).
+The R-Squared here is the smallest we have seen yet: 0.05. This means that **the model explains about 5% of the variance in `sales`**. 5% is well below both the `radio` model (33%) and the `TV` model (61%).
 
 The coefficient is also small, though similar to the `TV` coefficient. **An increase of &dollar;1k in newspaper spending is associated with about 50 additional widget sales** (more precisely, about 54.7). This is still much less than the 200-widget increase associated with &dollar;1k of additional `radio` spending.
 
